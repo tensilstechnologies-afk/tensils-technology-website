@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="data:," />
+<title>Tensils Technology — Websites, CRM, ERP & POS Systems</title>
+<meta name="description" content="Tensils Technology builds websites, CRM, ERP, dashboards and POS & management systems that run your business. 100+ projects delivered." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050B16; --bg2:#081120; --panel:#0A1626; --panel2:#0D1B31;
+  --ink:#EDF3FA; --muted:#9DB0C6; --muted2:#6E8299;
+  --teal:#02C0A7; --teal-d:#02A891; --line:rgba(157,176,198,.16);
+  --radius:20px; --shadow:0 30px 70px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.08;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+button,[role="button"],select,input,textarea{font-family:'Inter',sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+::selection{background:var(--teal);color:#04241F}
+/* ---------- PRELOADER ---------- */
+#preloader{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s ease,visibility .6s}
+#preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+.pre-mark{display:flex;align-items:center;gap:12px;font-family:'Sora';font-weight:800;font-size:22px;letter-spacing:.02em}
+.pre-pct{font-family:'Sora';font-weight:800;font-size:clamp(56px,10vw,96px);color:var(--teal);line-height:1;font-variant-numeric:tabular-nums}
+.pre-bar{width:min(320px,70vw);height:3px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.pre-bar i{display:block;height:100%;width:0%;background:var(--teal);border-radius:99px;transition:width .12s linear}
+.pre-sub{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted2)}
+/* chevron logo mark */
+.mark{position:relative;width:38px;height:30px;flex:none}
+.mark i{position:absolute;left:0;width:34px;height:15px;background:var(--teal);clip-path:polygon(0 100%,50% 0,100% 100%,100% 62%,50% -38%,0 62%);display:block}
+.mark i:first-child{top:0}
+.mark i:last-child{top:14px;background:#5E7A93;opacity:.85}
+.mark.sm{width:30px;height:24px}.mark.sm i{width:27px;height:12px}.mark.sm i:last-child{top:11px}
+/* ---------- HEADER ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:90;transition:background .35s,border-color .35s,backdrop-filter .35s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(5,11,22,.86);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 0}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:'Sora';font-weight:800;font-size:19px;letter-spacing:.01em}
+.logo small{display:block;font-family:'Inter';font-weight:600;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal)}
+nav.main{display:flex;gap:6px;align-items:center}
+nav.main a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14.5px;padding:9px 13px;border-radius:999px;transition:.25s}
+nav.main a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:.25s;text-decoration:none}
+.icon-btn:hover{border-color:var(--teal);color:var(--teal)}
+.icon-btn svg{width:19px;height:19px}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:15px;border-radius:999px;padding:9px 10px 9px 22px;transition:.3s;cursor:pointer;border:0}
+.btn .arr{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none;transition:transform .3s}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-teal{background:var(--teal);color:#03211C}
+.btn-teal .arr{background:#04241F;color:var(--teal)}
+.btn-teal:hover{background:#14D3BB}
+.btn-white{background:#F2F7FB;color:#0A1626}
+.btn-white .arr{background:var(--teal);color:#03211C}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost .arr{background:var(--teal);color:#03211C}
+.link-under{color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:3px;transition:.25s}
+.link-under:hover{color:var(--teal);border-color:var(--teal)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--ink);font-size:20px;cursor:pointer}
+@media(max-width:960px){
+  nav.main{display:none;position:absolute;top:74px;left:16px;right:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:10px;flex-direction:column;align-items:stretch;box-shadow:var(--shadow)}
+  nav.main.open{display:flex}
+  nav.main a{padding:13px 14px}
+  .burger{display:block}
+  .nav .btn-teal{display:none}
+}
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:158px 0 0;overflow:hidden;background:radial-gradient(1100px 600px at 78% 30%,rgba(2,192,167,.13),transparent 60%),radial-gradient(800px 500px at 8% 90%,rgba(2,192,167,.06),transparent 60%),var(--bg)}
+#stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;min-height:520px}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;min-height:0}}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:22px}
+.hero h1{font-size:clamp(46px,6.6vw,96px);font-weight:800}
+.hero h1 .teal{color:var(--teal)}
+.hero p.lead{font-size:clamp(16.5px,1.6vw,19.5px);color:var(--muted);max-width:520px;margin:26px 0 32px}
+.hero-ctas{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+/* chevron visual */
+.chev-stage{position:relative;height:560px}
+@media(max-width:960px){.chev-stage{height:400px}}
+.chev{position:absolute;filter:drop-shadow(0 30px 50px rgba(0,0,0,.55))}
+.chev.top{width:min(560px,92%);right:-10px;top:0;animation:floaty 7s ease-in-out infinite}
+.chev.bot{width:min(400px,68%);right:130px;top:295px;animation:floaty 8s ease-in-out infinite reverse}
+@media(max-width:960px){.chev.bot{top:215px;right:70px}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.chip{position:absolute;display:inline-flex;align-items:center;gap:8px;background:rgba(10,22,38,.82);border:1px solid var(--line);backdrop-filter:blur(6px);padding:9px 15px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink);animation:floaty 6s ease-in-out infinite}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal)}
+.chip.c1{top:26px;right:330px}.chip.c2{top:120px;left:-6px}.chip.c3{top:230px;right:-4px}
+.chip.c4{bottom:118px;left:26px}.chip.c5{bottom:26px;right:170px}.chip.c6{bottom:70px;right:-6px}
+@media(max-width:960px){.chip.c1{right:auto;left:8px;top:6px}.chip.c3{top:170px}.chip.c5{right:60px}}
+.hero-stats{position:relative;border-top:1px solid var(--line);margin-top:44px;padding:30px 0 38px;display:flex;gap:0;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}
+.hstats{display:flex;gap:clamp(28px,5vw,72px);flex-wrap:wrap}
+.hstat b{font-family:'Sora';font-size:clamp(34px,3.6vw,48px);font-weight:800;line-height:1;display:flex;align-items:flex-start}
+.hstat b sup{color:var(--teal);font-size:.55em;margin-top:4px}
+.hstat span{display:block;color:var(--muted);font-size:13.5px;margin-top:8px}
+.hero-note{color:var(--muted2);font-size:13.5px;max-width:230px;text-align:right}
+@media(max-width:700px){.hero-note{display:none}}
+/* ---------- HERO ENTRANCE (staged, on load) ---------- */
+.ent{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,.8,.3,1) var(--d,0s),transform .9s cubic-bezier(.22,.8,.3,1) var(--d,0s);will-change:opacity,transform}
+body.hero-in .ent{opacity:1;transform:none}
+.hero-ctas.ent{transform:translateY(26px) scale(.97)}
+body.hero-in .hero-ctas.ent{transform:none}
+.chev-stage.ent{transform:translate(48px,12px) scale(.93);transition-duration:1.15s,1.15s}
+body.hero-in .chev-stage.ent{transform:none}
+.hw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.15em;margin-bottom:-.15em}
+.hwi{display:inline-block;transform:translateY(112%);transition:transform 1s cubic-bezier(.16,.8,.26,1) var(--d,0s);will-change:transform}
+body.hero-in .hwi{transform:none}
+.chip{opacity:0;transition:opacity .8s ease var(--d,0s)}
+body.hero-in .chip{opacity:1}
+/* ---------- SCROLL INTRO ---------- */
+#intro{position:relative;height:340vh;background:radial-gradient(900px 600px at 50% 45%,rgba(2,192,167,.10),transparent 65%),var(--bg)}
+.intro-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.intro-stars{position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 22%,rgba(255,255,255,.7) 50%,transparent 51%),radial-gradient(1px 1px at 28% 68%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 44% 14%,rgba(255,255,255,.6) 50%,transparent 51%),radial-gradient(1px 1px at 63% 82%,rgba(255,255,255,.55) 50%,transparent 51%),radial-gradient(2px 2px at 76% 30%,rgba(255,255,255,.65) 50%,transparent 51%),radial-gradient(1px 1px at 88% 60%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 52% 48%,rgba(2,192,167,.8) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 8% 84%,rgba(255,255,255,.45) 50%,transparent 51%),radial-gradient(1px 1px at 94% 12%,rgba(255,255,255,.6) 50%,transparent 51%)}
+.intro-phase{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;will-change:transform}
+.intro-phase.on{display:flex;animation:phaseIn .55s ease both}
+@keyframes phaseIn{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:blur(0)}}
+.intro-phase .big{font-family:'Sora';font-weight:800;font-size:clamp(64px,13vw,168px);color:var(--teal);line-height:1;letter-spacing:-.03em}
+.intro-phase h2{font-size:clamp(34px,5vw,58px);max-width:640px}
+.intro-phase p{color:var(--muted);font-size:17.5px;max-width:520px;margin:18px 0 28px}
+.intro-phase .eyebrow{margin-bottom:16px}
+.intro-phase.left{align-items:flex-start;text-align:left;justify-content:center;max-width:1240px;margin:0 auto;width:100%;padding:0 24px}
+.skip-intro{position:absolute;left:22px;bottom:22px;z-index:5;display:inline-flex;align-items:center;gap:10px;background:rgba(10,22,38,.8);border:1px solid var(--line);color:var(--ink);font-weight:600;font-size:13.5px;padding:8px 9px 8px 18px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px)}
+.skip-intro .arr{width:32px;height:32px;border-radius:50%;background:var(--teal);color:#03211C;display:grid;place-items:center}
+.intro-prog{position:absolute;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:9px;z-index:5}
+.intro-prog i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.22);display:block;transition:.3s}
+.intro-prog i.on{background:var(--teal);transform:scale(1.35)}
+@media(max-width:700px){.intro-prog{display:none}}
+/* ---------- SECTIONS ---------- */
+section{padding:96px 0}
+.kicker{font-size:12.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.sec-head{max-width:680px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(30px,4vw,46px);margin-bottom:14px}
+.sec-head p{color:var(--muted);margin:0;font-size:17px}
+.sec-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.sec-head-row .sec-head{margin:0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,.8,.3,1),transform .8s cubic-bezier(.22,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
+/* ---------- MARQUEE ---------- */
+.marquee-sec{padding:84px 0 70px;border-top:1px solid var(--line)}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);margin-top:12px}
+.mq-track{display:flex;gap:18px;width:max-content;animation:mq 30s linear infinite;padding:6px 0}
+.mq-track.rev{animation:mqr 36s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes mqr{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-item{flex:none;display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 26px;font-family:'Sora';font-weight:700;font-size:17px;color:#C9D8E8;white-space:nowrap}
+.mq-item small{font-family:'Inter';font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+/* ---------- SERVICES 3D CAROUSEL ---------- */
+.svc-layout{display:grid;grid-template-columns:370px 1fr;gap:clamp(28px,4vw,56px);align-items:center}
+.svc-left h2{font-size:clamp(42px,4.6vw,66px);margin-bottom:20px}
+.svc-left>p{color:var(--muted);font-size:16.5px;margin:0 0 34px;max-width:340px}
+.svc-list{display:flex;flex-direction:column;align-items:stretch}
+.svc-item{display:flex;align-items:center;gap:16px;background:none;border:0;border-bottom:1px solid transparent;padding:11px 2px;color:var(--muted2);font-size:16px;font-weight:500;cursor:pointer;text-align:left;transition:color .3s;padding-left:0}
+.svc-item .dash{flex:none;width:20px;height:2px;background:rgba(157,176,198,.4);border-radius:2px;transition:width .35s,background .35s}
+.svc-item:hover{color:var(--ink)}
+.svc-item.active{color:var(--ink);font-weight:700}
+.svc-item.active .dash{width:42px;background:var(--teal)}
+.svc-controls{display:flex;align-items:center;gap:14px;margin-top:30px}
+.car-btn{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:19px;cursor:pointer;transition:.25s;display:grid;place-items:center;flex:none}
+.car-btn:hover{border-color:var(--teal);color:var(--teal)}
+.svc-count{font-family:'Sora';font-weight:700;font-size:14px;color:var(--muted);letter-spacing:.14em;font-variant-numeric:tabular-nums}
+.svc-count b{color:var(--teal);font-size:17px}
+.r-stage{position:relative;height:580px;perspective:1500px;perspective-origin:50% 50%;overflow:hidden;outline:none;border-radius:26px}
+.r-stage:focus-visible{box-shadow:0 0 0 2px rgba(2,192,167,.6)}
+.r-card{position:absolute;left:50%;top:50%;width:min(430px,74%);height:540px;background:linear-gradient(165deg,#0E2140 0%,var(--panel2) 45%,var(--panel) 100%);border:1px solid var(--line);border-radius:22px;padding:30px 32px;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.22,.8,.3,1),opacity .8s cubic-bezier(.22,.8,.3,1),border-color .5s;cursor:pointer;overflow:hidden;will-change:transform,opacity}
+.r-card::before{content:"";position:absolute;top:-90px;right:-90px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(2,192,167,.22),transparent 70%);pointer-events:none}
+.r-card.is-front{border-color:rgba(2,192,167,.55);box-shadow:0 40px 80px rgba(0,0,0,.55);cursor:default}
+.r-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.r-top .svc-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--muted2)}
+.r-top .explore{font-size:13.5px;font-weight:700;color:var(--teal);text-decoration:none;opacity:0;transform:translateX(6px);transition:.4s;pointer-events:none}
+.r-card.is-front .explore{opacity:1;transform:none;pointer-events:auto}
+.r-top .explore:hover{text-decoration:underline}
+.r-icon{width:78px;height:78px;border-radius:20px;background:rgba(2,192,167,.13);border:1px solid rgba(2,192,167,.4);display:grid;place-items:center;color:var(--teal);margin:44px 0 auto;position:relative;z-index:1}
+.r-icon svg{width:38px;height:38px}
+.r-card h3{font-size:clamp(27px,2.6vw,34px);margin-bottom:12px;position:relative;z-index:1}
+.r-card p{color:var(--muted);font-size:15.5px;margin:0 0 22px;position:relative;z-index:1}
+.r-pills{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+.r-pills span{border:1px solid rgba(157,176,198,.35);background:rgba(255,255,255,.03);font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:999px;color:#C9D8E8;white-space:nowrap}
+@media(max-width:1020px){
+  .svc-layout{grid-template-columns:1fr}
+  .svc-left>p{max-width:560px}
+  .svc-list{flex-direction:row;flex-wrap:wrap;gap:4px 22px}
+  .svc-item{width:auto}
+  .r-stage{height:540px}
+  .r-card{height:500px}
+}
+@media(max-width:620px){
+  .r-stage{height:500px;perspective:1100px}
+  .r-card{width:82%;height:470px;padding:24px 22px}
+  .r-icon{width:62px;height:62px;margin-top:30px}
+  .r-icon svg{width:30px;height:30px}
+  .svc-list{flex-direction:column;flex-wrap:nowrap;gap:0}
+  .svc-item{width:100%}
+  .r-pills span{white-space:normal}
+}
+/* ---------- STACKED WORK ---------- */
+.stack{display:grid;gap:26px}
+.stack-card{position:sticky;border-radius:26px;overflow:hidden;border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;min-height:380px}
+@media(max-width:860px){.stack-card{grid-template-columns:1fr}}
+.stack-vis{position:relative;padding:34px;display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;overflow:hidden}
+.stack-vis::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 1.2px,transparent 1.3px);background-size:22px 22px;opacity:.5}
+.stack-vis .tag{position:absolute;top:22px;left:22px;z-index:2;background:rgba(3,14,24,.55);backdrop-filter:blur(4px);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em}
+.stack-vis h3{font-size:clamp(26px,3vw,36px);position:relative;z-index:2;color:#fff}
+.stack-vis .glyph{position:absolute;right:22px;top:16px;font-family:'Sora';font-weight:800;font-size:110px;line-height:1;color:rgba(255,255,255,.14);z-index:1}
+.g1{background:linear-gradient(135deg,#0B3B4D,#02A891)}
+.g2{background:linear-gradient(135deg,#12325E,#02C0A7)}
+.g3{background:linear-gradient(135deg,#3D2B57,#02A891)}
+.g4{background:linear-gradient(135deg,#5C3410,#C07F02)}
+.g5{background:linear-gradient(135deg,#5E1E3C,#02A891)}
+.g6{background:linear-gradient(135deg,#173A2E,#02C0A7)}
+.stack-body{padding:36px;display:flex;flex-direction:column;justify-content:center}
+.stack-body .cat{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.stack-body h3{font-size:24px;margin-bottom:12px}
+.stack-body p{color:var(--muted);font-size:15.5px;margin:0 0 18px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.chips span{background:rgba(2,192,167,.08);border:1px solid rgba(2,192,167,.28);font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;color:#BFE9E2}
+.link-arrow{color:var(--teal);font-weight:700;text-decoration:none;font-size:14.5px;display:inline-flex;gap:7px;transition:gap .25s;background:none;border:0;cursor:pointer;padding:4px 0;font-family:'Inter'}
+.link-arrow:hover{gap:12px}
+/* ---------- PRODUCTS ---------- */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.prod-grid{grid-template-columns:1fr}}
+.prod{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px;transition:.35s;position:relative;overflow:hidden}
+.prod::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),transparent)}
+.prod:hover{transform:translateY(-6px);border-color:rgba(2,192,167,.5)}
+.prod .p-ico{width:52px;height:52px;border-radius:14px;background:rgba(2,192,167,.12);border:1px solid rgba(2,192,167,.35);display:grid;place-items:center;color:var(--teal);margin-bottom:18px}
+.prod .p-ico svg{width:25px;height:25px}
+.prod h3{font-size:21px;margin-bottom:6px}
+.prod .p-tag{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.prod p{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+/* ---------- NEWSLETTER ---------- */
+.news-band{background:linear-gradient(120deg,#07332C,#0A1626 70%);border:1px solid rgba(2,192,167,.35);border-radius:26px;padding:clamp(30px,5vw,52px);display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+@media(max-width:860px){.news-band{grid-template-columns:1fr}}
+.news-band h2{font-size:clamp(26px,3.4vw,38px);margin-bottom:12px}
+.news-band p{color:var(--muted);margin:0;font-size:16px}
+.news-form{display:flex;gap:10px;flex-wrap:wrap}
+.news-form input{flex:1;min-width:220px;background:rgba(5,11,22,.7);border:1.5px solid var(--line);border-radius:999px;padding:14px 22px;color:var(--ink);font-size:15px;min-height:52px}
+.news-form input:focus{outline:2px solid rgba(2,192,167,.55);border-color:var(--teal)}
+.news-ok{display:none;background:rgba(2,192,167,.12);border:1px solid rgba(2,192,167,.4);color:#BFE9E2;border-radius:14px;padding:14px 18px;font-size:14.5px;font-weight:600}
+/* ---------- CONTACT ---------- */
+.contact-panel{display:grid;grid-template-columns:.92fr 1.08fr;gap:0;border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--panel)}
+@media(max-width:900px){.contact-panel{grid-template-columns:1fr}}
+.contact-info{background:linear-gradient(160deg,#0B2A33,#081120);padding:clamp(28px,4vw,44px)}
+.contact-info h3{font-size:24px;margin-bottom:8px}
+.contact-info>p{color:var(--muted);font-size:15px;margin:0 0 26px}
+.info-row{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line)}
+.info-row:last-of-type{border:0}
+.info-row .ic{width:44px;height:44px;flex:none;border-radius:12px;background:rgba(2,192,167,.12);border:1px solid rgba(2,192,167,.3);display:grid;place-items:center;color:var(--teal)}
+.info-row .ic svg{width:21px;height:21px}
+.info-row b{display:block;font-family:'Sora';font-size:15px}
+.info-row a{color:var(--teal);font-weight:600;text-decoration:none;word-break:break-all;font-size:14.5px}
+.info-row span{font-size:14.5px}
+.info-row .note{font-size:12.5px;color:var(--muted2)}
+.socials{display:flex;gap:10px;margin-top:22px}
+.contact-form{padding:clamp(28px,4vw,44px)}
+.contact-form h3{font-size:24px;margin-bottom:18px}
+form{display:grid;gap:14px}
+label{font-size:13.5px;font-weight:600;display:grid;gap:7px;color:#C9D8E8}
+input,select,textarea{font-size:15px;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg2);color:var(--ink);width:100%;min-height:48px}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(2,192,167,.5);border-color:var(--teal)}
+textarea{min-height:118px;resize:vertical}
+.f-note{font-size:12.5px;color:var(--muted2);margin:0}
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);background:#040910;margin-top:0}
+.foot{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:34px;padding:64px 0 38px}
+@media(max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.foot{grid-template-columns:1fr}}
+footer h4{color:#fff;font-size:15px;margin-bottom:15px}
+footer a{display:block;color:var(--muted);text-decoration:none;padding:5px 0;font-size:14.5px;transition:.2s}
+footer a:hover{color:var(--teal)}
+footer p{color:var(--muted);font-size:14.5px}
+.foot-bottom{border-top:1px solid var(--line);padding:20px 0 26px;font-size:13px;color:var(--muted2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot-big{font-family:'Sora';font-weight:800;font-size:clamp(52px,10.5vw,150px);line-height:.95;color:rgba(255,255,255,.05);text-align:center;padding:10px 0 0;user-select:none;letter-spacing:-.02em;white-space:nowrap;overflow:hidden}
+/* ---------- WHATSAPP RAIL ---------- */
+.rail{position:fixed;right:16px;bottom:96px;z-index:80;display:flex;flex-direction:column;gap:11px}
+.rail a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.45);transition:.3s;border:1px solid rgba(255,255,255,.14)}
+.rail a:hover{transform:scale(1.09)}
+.rail svg{width:25px;height:25px}
+.rail .wa{background:#22C55E;color:#fff}
+.rail .cal{background:#33506E;color:#fff}
+.rail .chat{background:var(--teal);color:#03211C}
+#toTop{position:fixed;right:16px;bottom:26px;z-index:80;width:52px;height:52px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);color:var(--ink);font-size:19px;cursor:pointer;display:none;place-items:center}
+#toTop.show{display:grid}
+#toTop:hover{border-color:var(--teal);color:var(--teal)}
+@media(max-width:620px){.rail{right:12px;bottom:88px}.rail a{width:46px;height:46px}.rail svg{width:22px;height:22px}#toTop{right:12px;width:48px;height:48px}.logo .mark{margin-left:3px}.hero{padding-top:132px}.hero-ctas{margin-bottom:64px}}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+  .ent,.hwi,.chip{opacity:1 !important;transform:none !important;transition-delay:0s !important}
+  #intro{height:auto}.intro-sticky{position:static;height:auto;padding:80px 0}.intro-phase{display:flex !important;position:static;opacity:1 !important;pointer-events:auto;margin:30px 0;transform:none !important;filter:none !important;animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader" aria-hidden="true">
+  <div class="pre-mark"><span class="mark"><i></i><i></i></span> TENSILS</div>
+  <div class="pre-pct" id="prePct">0%</div>
+  <div class="pre-bar"><i id="preBar"></i></div>
+  <div class="pre-sub">Loading experience</div>
+</div>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="mark"><i></i><i></i></span><span>TENSILS<small>Technology</small></span></a>
+    <nav class="main" id="mainNav">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#products">Products</a>
+      <a href="#clients">Clients</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-teal" href="#contact">Request a quote <span class="arr">→</span></a>
+      <button class="burger" id="burger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow ent" style="--d:0s">Websites · CRM · ERP · POS</div>
+        <h1><span class="hw"><span class="hwi" style="--d:.10s">We</span></span> <span class="hw"><span class="hwi" style="--d:.18s">build</span></span> <span class="hw"><span class="hwi" style="--d:.26s">software</span></span><br><span class="teal"><span class="hw"><span class="hwi" style="--d:.40s">that</span></span> <span class="hw"><span class="hwi" style="--d:.48s">runs</span></span> <span class="hw"><span class="hwi" style="--d:.56s">your</span></span><br><span class="hw"><span class="hwi" style="--d:.70s">business.</span></span></span></h1>
+        <p class="lead ent" style="--d:.80s">Websites, customer systems, operations platforms and point-of-sale software — designed, built and maintained by one team, so your business runs on systems that actually fit how you work.</p>
+        <div class="hero-ctas ent" style="--d:.92s">
+          <a class="btn btn-white" href="#contact">Start a project <span class="arr">→</span></a>
+          <a class="link-under" href="#work">See our work →</a>
+        </div>
+      </div>
+      <div class="chev-stage ent" style="--d:.30s" aria-hidden="true">
+        <svg class="chev top" viewBox="0 0 560 300"><defs><pattern id="dots1" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="2.2" fill="rgba(255,255,255,.28)"/></pattern></defs><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="#02C0A7"/><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="url(#dots1)"/></svg>
+        <svg class="chev bot" viewBox="0 0 560 300"><defs><pattern id="dots2" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="2.2" fill="rgba(255,255,255,.22)"/></pattern></defs><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="#486581"/><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="url(#dots2)"/></svg>
+        <span class="chip c1" style="--d:1.00s">Custom software</span>
+        <span class="chip c2" style="--d:1.08s">Web platforms</span>
+        <span class="chip c3" style="--d:1.16s">CRM &amp; ERP</span>
+        <span class="chip c4" style="--d:1.24s">POS systems</span>
+        <span class="chip c5" style="--d:1.32s">Dashboards</span>
+        <span class="chip c6" style="--d:1.40s">E-commerce</span>
+      </div>
+    </div>
+    <div class="hero-stats ent" style="--d:1.10s">
+      <div class="hstats">
+        <div class="hstat"><b><span class="count" data-to="100">100</span><sup>+</sup></b><span>Projects delivered</span></div>
+        <div class="hstat"><b><span class="count" data-to="7">7</span></b><span>Core services, one team</span></div>
+        <div class="hstat"><b><span class="count" data-to="24">24</span><sup>h</sup></b><span>WhatsApp response time</span></div>
+      </div>
+      <div class="hero-note">Trusted by shops, clinics, restaurants and service businesses — in Pakistan and worldwide.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCROLL INTRO -->
+<div id="intro">
+  <div class="intro-sticky">
+    <div class="intro-stars" aria-hidden="true"></div>
+    <div class="intro-phase left" data-phase>
+      <div class="eyebrow">What we build</div>
+      <h2>One team for every layer of your system.</h2>
+      <p>Website, customers, operations and sales — planned together from day one, so nothing has to be bolted on later.</p>
+      <a class="btn btn-ghost" href="#services">Explore our services <span class="arr">→</span></a>
+    </div>
+    <div class="intro-phase" data-phase><div class="big">Design.</div></div>
+    <div class="intro-phase" data-phase><div class="big">Build.</div></div>
+    <div class="intro-phase" data-phase><div class="big">Scale.</div></div>
+    <div class="intro-phase" data-phase>
+      <h2>From idea to launch,<br><span style="color:var(--teal)">without the chaos.</span></h2>
+      <p>Fixed scope, weekly previews and a team that stays after launch.</p>
+      <a class="btn btn-white" href="#contact">Start your project <span class="arr">→</span></a>
+    </div>
+    <div class="intro-prog" id="introProg"><i></i><i></i><i></i><i></i><i></i></div>
+    <button class="skip-intro" id="skipIntro">Skip intro <span class="arr">↓</span></button>
+  </div>
+</div>
+
+<!-- CLIENT MARQUEE -->
+<section class="marquee-sec" id="clients">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Our clients &amp; platforms</div>
+      <h2>Businesses that run on Tensils systems.</h2>
+      <p>Retail, healthcare, hospitality, research supplies and professional services — a selection of the brands and platforms we have built or maintain.</p>
+    </div>
+  </div>
+  <div class="marquee reveal" aria-hidden="true"><div class="mq-track" id="mq1"></div></div>
+  <div class="marquee reveal" aria-hidden="true"><div class="mq-track rev" id="mq2"></div></div>
+</section>
+
+<!-- SERVICES 3D CAROUSEL -->
+<section id="services" style="padding-top:20px">
+  <div class="wrap">
+    <div class="svc-layout">
+      <div class="svc-left reveal">
+        <div class="kicker">What we do</div>
+        <h2>Seven services.<br>One team.</h2>
+        <p>Strategy, design and engineering under one roof — so your product ships faster and keeps working as you grow.</p>
+        <div class="svc-list" id="svcList" role="tablist" aria-label="Services"></div>
+        <div class="svc-controls">
+          <button class="car-btn" id="carPrev" aria-label="Previous service">←</button>
+          <button class="car-btn" id="carNext" aria-label="Next service">→</button>
+          <span class="svc-count"><b id="svcCur">01</b> / 07</span>
+        </div>
+      </div>
+      <div class="r-stage reveal" id="rStage" tabindex="0" aria-label="Services carousel — use arrow keys, scroll or click a card to explore"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STACKED WORK -->
+<section id="work" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Selected work</div>
+      <h2>Recently shipped.</h2>
+      <p>Real platforms we designed, built and launched — scroll through the stack.</p>
+    </div>
+    <div class="stack" id="stack"></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Our products</div>
+      <h2>Platforms ready to launch.</h2>
+      <p>Systems we built and maintain in-house, ready to deploy and tailor to your business.</p>
+    </div>
+    <div class="prod-grid">
+      <article class="prod reveal">
+        <span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <h3>TensilsOS</h3><div class="p-tag">ERP · HRMS · CRM</div>
+        <p>Our flagship enterprise platform: 20 role-based dashboards, HR and attendance, projects, tasks, chat, a client portal, analytics and an AI assistant — one system for the whole company.</p>
+        <a class="link-arrow" href="https://tensilsos.vercel.app" target="_blank" rel="noopener">Visit live →</a>
+      </article>
+      <article class="prod reveal">
+        <span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.7-5h14.6L21 9M3 9h18v11H3zM9 13h6"/></svg></span>
+        <h3>ProPOS</h3><div class="p-tag">Point of Sale</div>
+        <p>A complete POS for retail businesses — fast billing, inventory, customers and daily reporting, running live for real shops today.</p>
+        <a class="link-arrow" href="https://pos.nfy.fyi/" target="_blank" rel="noopener">Visit live →</a>
+      </article>
+      <article class="prod reveal">
+        <span class="p-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
+        <h3>Urban Bites RMS</h3><div class="p-tag">Restaurant System</div>
+        <p>Restaurant management with POS, kitchen display, QR table ordering, reservations and supplier management for multi-cuisine restaurants.</p>
+        <a class="link-arrow" href="https://urban-bites-rms.vercel.app" target="_blank" rel="noopener">Visit live →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section style="padding-top:0">
+  <div class="wrap reveal">
+    <div class="news-band">
+      <div>
+        <div class="kicker">Newsletter</div>
+        <h2>Stay informed.</h2>
+        <p>Product releases, new features and practical ideas for running your business on better software. One email a month, no spam.</p>
+      </div>
+      <div>
+        <form class="news-form" id="newsForm">
+          <input type="email" required id="newsEmail" placeholder="Your work email" aria-label="Email address">
+          <button class="btn btn-teal" type="submit" style="padding-left:22px">Subscribe <span class="arr">→</span></button>
+        </form>
+        <div class="news-ok" id="newsOk">You are on the list — your first update arrives with the next monthly issue.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Contact</div>
+      <h2>Let's build your system.</h2>
+      <p>Message us on WhatsApp for the fastest reply, or send the form — it opens WhatsApp with your details already filled in.</p>
+    </div>
+    <div class="contact-panel reveal">
+      <div class="contact-info">
+        <h3>Get in touch</h3>
+        <p>One message is enough to start — tell us what you want to build and we reply with next steps and a clear quote.</p>
+        <div class="info-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span><div><b>WhatsApp</b><a href="https://wa.me/923492836687" target="_blank" rel="noopener">+92 349 2836687</a><div class="note">Fastest response — usually within hours</div></div></div>
+        <div class="info-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><div><b>Email</b><a href="mailto:tensilstechnologies@gmail.com">tensilstechnologies@gmail.com</a><div class="note">For proposals, files and detailed briefs</div></div></div>
+        <div class="info-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><div><b>Working hours</b><span>Mon – Sat</span><div class="note">Remote-first team, serving clients worldwide</div></div></div>
+        <div class="info-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><b>Based in</b><span>Pakistan · Working worldwide</span><div class="note">Clients across Europe, the US, UK, Canada &amp; Australia</div></div></div>
+        <div class="socials">
+          <a class="icon-btn" href="https://www.facebook.com/profile.php?id=61595170020943" target="_blank" rel="noopener" aria-label="Tensils Technology on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H8.5v3H11v7h2.5z"/></svg></a>
+          <a class="icon-btn" href="https://www.instagram.com/tensilstechnology/" target="_blank" rel="noopener" aria-label="Tensils Technology on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="icon-btn" href="mailto:tensilstechnologies@gmail.com" aria-label="Email Tensils Technology"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Tell us about your project</h3>
+        <form id="contactForm">
+          <label>Your name<input required name="name" placeholder="e.g. Ahmed Khan"></label>
+          <label>What do you need?
+            <select name="service"><option>Website</option><option>CRM System</option><option>ERP System</option><option>POS System</option><option>Dashboard / Analytics</option><option>E-commerce Store</option><option>Custom Management System</option><option>Something else</option></select>
+          </label>
+          <label>Project details<textarea required name="msg" placeholder="What should the system do? Any deadline or budget range?"></textarea></label>
+          <button class="btn btn-teal" type="submit" style="justify-content:center;padding:13px 22px">Send via WhatsApp <span class="arr">→</span></button>
+          <p class="f-note">Submitting opens WhatsApp with your message ready to send — nothing is stored on this page.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top" style="margin-bottom:16px"><span class="mark"><i></i><i></i></span><span>TENSILS<small>Technology</small></span></a>
+        <p style="max-width:300px">Websites • CRM • ERP • Dashboards • POS &amp; Management Systems — software that runs your business.</p>
+      </div>
+      <div><h4>Explore</h4>
+        <a href="#services">Services</a><a href="#work">Selected Work</a><a href="#products">Products</a><a href="#clients">Clients</a><a href="#contact">Contact</a>
+      </div>
+      <div><h4>Services</h4>
+        <a href="#services">Web Development</a><a href="#services">CRM &amp; ERP Systems</a><a href="#services">POS Systems</a><a href="#services">E-commerce Stores</a><a href="#services">Dashboards</a>
+      </div>
+      <div><h4>Get in touch</h4>
+        <a href="https://wa.me/923492836687" target="_blank" rel="noopener">WhatsApp: +92 349 2836687</a>
+        <a href="mailto:tensilstechnologies@gmail.com">tensilstechnologies@gmail.com</a>
+        <a href="https://www.facebook.com/profile.php?id=61595170020943" target="_blank" rel="noopener">Facebook — Tensils Technology</a>
+        <a href="https://www.instagram.com/tensilstechnology/" target="_blank" rel="noopener">Instagram — @tensilstechnology</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-big" aria-hidden="true">TENSILS</div>
+  <div class="wrap"><div class="foot-bottom"><span>© 2026 Tensils Technology. All rights reserved.</span><span>100+ projects delivered · Pakistan → Worldwide</span></div></div>
+</footer>
+
+<!-- FLOATING RAIL -->
+<div class="rail">
+  <a class="wa" href="https://wa.me/923492836687?text=Hi%20Tensils%20Technology!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4.6 28l6.3-1.6c1.5.8 3.3 1.3 5.1 1.3 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm0 21.7c-1.6 0-3.2-.4-4.6-1.3l-.3-.2-3.7 1 1-3.6-.2-.4a9.7 9.7 0 0 1-1.5-5.3C6.7 9.6 10.8 5.4 16 5.4S25.3 9.6 25.3 14.9 21.2 24.7 16 24.7zm5.3-7.2c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.1-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.5.1-.2 0-.4 0-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg></a>
+  <a class="cal" href="#contact" aria-label="Book a consultation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></a>
+  <a class="chat" href="#contact" aria-label="Go to contact form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4c-1.5 0-3-.4-4.2-1.1L3 20l1.3-5.1A8.4 8.4 0 1 1 21 11.5z"/></svg></a>
+</div>
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+/* ============ PRELOADER ============ */
+(function(){
+  var pct=document.getElementById('prePct'), bar=document.getElementById('preBar'), pre=document.getElementById('preloader');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var n=0, dur=reduced?60:1500, t0=null;
+  function step(ts){
+    if(!t0)t0=ts;
+    var p=Math.min((ts-t0)/dur,1);
+    n=Math.round(100*(1-Math.pow(1-p,2)));
+    pct.textContent=n+'%'; bar.style.width=n+'%';
+    if(p<1) requestAnimationFrame(step); else setTimeout(function(){pre.classList.add('done');document.body.classList.add('hero-in')},180);
+  }
+  requestAnimationFrame(step);
+  setTimeout(function(){pre.classList.add('done');document.body.classList.add('hero-in')},3200); /* safety */
+})();
+/* ============ HEADER / NAV ============ */
+var header=document.getElementById('siteHeader');
+var toTop=document.getElementById('toTop');
+window.addEventListener('scroll',function(){
+  header.classList.toggle('scrolled',window.scrollY>30);
+  toTop.classList.toggle('show',window.scrollY>700);
+},{passive:true});
+toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+document.getElementById('burger').addEventListener('click',function(){document.getElementById('mainNav').classList.toggle('open')});
+document.querySelectorAll('#mainNav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mainNav').classList.remove('open')})});
+/* ============ CONSTELLATION CANVAS ============ */
+(function(){
+  var cv=document.getElementById('stars'); if(!cv) return;
+  var ctx=cv.getContext('2d'), W,H,pts=[],mx=-999,my=-999;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){
+    var r=cv.parentElement.getBoundingClientRect();
+    W=cv.width=r.width; H=cv.height=r.height;
+    var count=Math.min(110,Math.floor(W*H/16000));
+    pts=[];
+    for(var i=0;i<count;i++) pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.6+.5});
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var i,j,p,q,dx,dy,d;
+    for(i=0;i<pts.length;i++){
+      p=pts[i]; p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
+      dx=p.x-mx; dy=p.y-my; d=dx*dx+dy*dy;
+      if(d<12000){p.x+=dx*.004; p.y+=dy*.004;}
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fillStyle='rgba(2,192,167,.75)'; ctx.fill();
+    }
+    for(i=0;i<pts.length;i++) for(j=i+1;j<pts.length;j++){
+      p=pts[i]; q=pts[j]; dx=p.x-q.x; dy=p.y-q.y; d=dx*dx+dy*dy;
+      if(d<12100){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.strokeStyle='rgba(120,200,220,'+(0.14*(1-d/12100)).toFixed(3)+')'; ctx.lineWidth=1; ctx.stroke(); }
+    }
+    if(!reduced) requestAnimationFrame(draw);
+  }
+  size(); draw();
+  window.addEventListener('resize',size);
+  cv.parentElement.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top;});
+})();
+/* ============ COUNTERS ============ */
+(function(){
+  var els=document.querySelectorAll('.count');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced) return; /* final values already in markup */
+  els.forEach(function(el){
+    var to=+el.dataset.to, start=Date.now(), dur=1200;
+    el.textContent='0';
+    var iv=setInterval(function(){
+      var p=Math.min((Date.now()-start)/dur,1);
+      el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+      if(p>=1){ el.textContent=to; clearInterval(iv); }
+    },30);
+    setTimeout(function(){ el.textContent=to; clearInterval(iv); },2200); /* guarantee final value */
+  });
+})();
+/* ============ SCROLL INTRO ============ */
+(function(){
+  var intro=document.getElementById('intro'), phases=document.querySelectorAll('[data-phase]'), dots=document.querySelectorAll('#introProg i');
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced) return;
+  function update(){
+    var r=intro.getBoundingClientRect();
+    var total=intro.offsetHeight-window.innerHeight;
+    var p=Math.min(Math.max(-r.top/total,0),1);
+    var n=phases.length, seg=1/n, idx=Math.min(Math.floor(p/seg),n-1), local=(p-idx*seg)/seg;
+    phases.forEach(function(ph,i){
+      var on=i===idx;
+      if(on && !ph.classList.contains('on')){ ph.classList.add('on'); }
+      if(!on){ ph.classList.remove('on'); }
+      if(on){
+        var sc=.94+Math.min(local*1.5,1)*.06;
+        ph.style.transform='scale('+sc.toFixed(3)+') translateY('+((0.5-local)*22).toFixed(1)+'px)';
+      }
+    });
+    dots.forEach(function(d,i){d.classList.toggle('on',i===idx)});
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+  document.getElementById('skipIntro').addEventListener('click',function(){
+    window.scrollTo({top:intro.offsetTop+intro.offsetHeight-window.innerHeight+80,behavior:'smooth'});
+  });
+})();
+/* ============ MARQUEE ============ */
+(function(){
+  var row1=[['TensilsOS','ERP Platform'],['ProPOS','Point of Sale'],['Urban Bites','Restaurant RMS'],['Whispers and Wings','WooCommerce'],['Inside Sciences','WooCommerce'],['Aureum Noesis','Bookings']];
+  var row2=[['Covalent Research Labs','Shopify'],['Fort Point Annuities','Lead Gen'],['Hoosier Rides','Ride Quotes'],['Manga Addicts','Content Site'],['Fazan Consultancy','Corporate'],['Uzair Ahmad','Portfolio']];
+  function fill(id,items){
+    var html=items.map(function(x){return '<span class="mq-item">'+x[0]+' <small>'+x[1]+'</small></span>'}).join('');
+    document.getElementById(id).innerHTML=html+html;
+  }
+  fill('mq1',row1); fill('mq2',row2);
+})();
+/* ============ SERVICES CAROUSEL ============ */
+var ICONS={
+  web:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>',
+  crm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  erp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+  pos:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1.7-5h14.6L21 9M3 9h18v11H3zM9 13h6"/></svg>',
+  dash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>',
+  shop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>',
+  custom:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>'
+};
+var SERVICES=[
+ {i:'web',t:'Web Development',d:'Fast, modern business websites and landing pages that turn visitors into enquiries — built on WordPress, custom code or modern frameworks.',pts:['Business & company websites','Landing pages that convert','Speed & SEO foundations']},
+ {i:'crm',t:'CRM Systems',d:'Track leads, customers, follow-ups and sales pipelines in one place, so no enquiry ever slips through again.',pts:['Lead & pipeline management','Follow-up reminders','Team roles & permissions']},
+ {i:'erp',t:'ERP Systems',d:'Complete business platforms like our own TensilsOS — HR, attendance, projects, tasks, clients and analytics in a single system.',pts:['HRMS & attendance','Projects, tasks & chat','Client portals & reports']},
+ {i:'pos',t:'POS Systems',d:'Point-of-sale systems for shops and restaurants — billing, inventory, tables, kitchen display and daily reports.',pts:['Fast billing & receipts','Stock & inventory control','Restaurant QR table ordering']},
+ {i:'dash',t:'Dashboards & Analytics',d:'Live dashboards that pull your sales, stock and team data into one screen, so decisions take seconds, not spreadsheets.',pts:['Real-time KPI dashboards','Sales & stock reports','Custom admin panels']},
+ {i:'shop',t:'E-commerce Stores',d:'Shopify and WooCommerce stores designed to sell — clean product pages, smooth checkout and the trust elements buyers look for.',pts:['Shopify & WooCommerce builds','Store redesigns & fixes','Checkout & payment setup']},
+ {i:'custom',t:'Custom Management Systems',d:'School, clinic, booking, rental or industry-specific software — if your workflow is unique, we build the system around it.',pts:['Booking & appointment systems','Industry-specific workflows','Maintenance & new features']}
+];
+(function(){
+  var stage=document.getElementById('rStage');
+  var list=document.getElementById('svcList');
+  var N=SERVICES.length, active=0;
+  /* left list */
+  list.innerHTML=SERVICES.map(function(s,i){
+    return '<button class="svc-item" role="tab" data-i="'+i+'"><span class="dash"></span>'+s.t+'</button>';
+  }).join('');
+  var items=list.querySelectorAll('.svc-item');
+  items.forEach(function(b){ b.addEventListener('click',function(){ go(+b.dataset.i); }); });
+  /* 3D cards */
+  stage.innerHTML=SERVICES.map(function(s,i){
+    return '<article class="r-card" data-i="'+i+'">'
+      +'<div class="r-top"><span class="svc-eyebrow">Service</span><a class="explore" href="#contact">Explore →</a></div>'
+      +'<span class="r-icon">'+ICONS[s.i]+'</span>'
+      +'<h3>'+s.t+'</h3><p>'+s.d+'</p>'
+      +'<div class="r-pills">'+s.pts.map(function(p){return '<span>'+p+'</span>'}).join('')+'</div>'
+      +'</article>';
+  }).join('');
+  var cards=stage.querySelectorAll('.r-card');
+  cards.forEach(function(c){ c.addEventListener('click',function(e){
+    if(e.target.closest('.explore')) return;
+    var i=+c.dataset.i; if(i!==active) go(i);
+  }); });
+  function offsetFor(i){
+    var d=(i-active)%N; if(d<0)d+=N; if(d>N/2)d-=N; return d;
+  }
+  function apply(){
+    cards.forEach(function(c,i){
+      var o=offsetFor(i), a=Math.abs(o);
+      var tx=0, ry=0, sc=1, op=0;
+      if(o===0){ tx=0; ry=0; sc=1; op=1; }
+      else if(a===1){ tx=o*74; ry=o*-32; sc=.86; op=.55; }
+      else if(a===2){ tx=o*132; ry=o*-48; sc=.72; op=.16; }
+      else { tx=o*160; ry=o*-55; sc=.6; op=0; }
+      c.style.transform='translate(-50%,-50%) translateX('+tx+'%) rotateY('+ry+'deg) scale('+sc+')';
+      c.style.opacity=op;
+      c.style.zIndex=20-a;
+      c.style.pointerEvents=a>2?'none':'auto';
+      c.classList.toggle('is-front',o===0);
+    });
+    items.forEach(function(b,i){
+      b.classList.toggle('active',i===active);
+      b.setAttribute('aria-selected',i===active?'true':'false');
+    });
+    document.getElementById('svcCur').textContent=('0'+(active+1)).slice(-2);
+  }
+  function go(i){ active=((i%N)+N)%N; apply(); }
+  document.getElementById('carPrev').addEventListener('click',function(){ go(active-1); });
+  document.getElementById('carNext').addEventListener('click',function(){ go(active+1); });
+  /* scroll (wheel) over the stage rotates to the next / previous service */
+  var wheelLock=false;
+  stage.addEventListener('wheel',function(e){
+    if(wheelLock || Math.abs(e.deltaY)<6) return;
+    wheelLock=true;
+    go(active+(e.deltaY>0?1:-1));
+    setTimeout(function(){ wheelLock=false; },550);
+  },{passive:true});
+  /* swipe */
+  var startX=null;
+  stage.addEventListener('touchstart',function(e){ startX=e.touches[0].clientX; },{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(startX===null) return;
+    var dx=e.changedTouches[0].clientX-startX;
+    if(Math.abs(dx)>42) go(active+(dx<0?1:-1));
+    startX=null;
+  },{passive:true});
+  /* arrow keys when the stage is focused */
+  stage.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){ e.preventDefault(); go(active+1); }
+    if(e.key==='ArrowLeft'){ e.preventDefault(); go(active-1); }
+  });
+  apply();
+})();
+/* ============ STACKED WORK ============ */
+var PROJECTS=[
+ {t:'TensilsOS',g:'g1',glyph:'T',tag:'ERP · HRMS · CRM',cat:'Enterprise Platform',d:'Our flagship enterprise platform: 20 role-based dashboards, HR, projects, tasks, chat, client portal, analytics and an AI assistant in one system.',chips:['ERP','HRMS','React','Live'],url:'https://tensilsos.vercel.app'},
+ {t:'ProPOS',g:'g2',glyph:'P',tag:'Point of Sale',cat:'Retail System',d:'A complete POS for retail businesses — sales, inventory, customers and reporting, running live for real shops.',chips:['POS','Inventory','Live'],url:'https://pos.nfy.fyi/'},
+ {t:'Urban Bites RMS',g:'g3',glyph:'U',tag:'Restaurant System',cat:'Hospitality Platform',d:'Restaurant management with POS, kitchen display, QR table ordering, reservations and supplier management for multi-cuisine restaurants.',chips:['RMS','QR Ordering','KDS','Live'],url:'https://urban-bites-rms.vercel.app'},
+ {t:'Covalent Research Labs',g:'g5',glyph:'C',tag:'Shopify Store',cat:'E-commerce',d:'Full Shopify redesign for a US research-supplies store: catalog with filters, COA library, build-a-box and age verification.',chips:['Shopify','Redesign','E-commerce'],url:''},
+ {t:'Whispers and Wings',g:'g6',glyph:'W',tag:'WooCommerce Store',cat:'E-commerce',d:'Gift store selling butterfly keychains, canvas prints and monthly gift boxes — product variants, bundles and automated tax set up and maintained.',chips:['WooCommerce','Maintenance'],url:'https://whispersandwings.org'},
+ {t:'Aureum Noesis',g:'g4',glyph:'A',tag:'Booking Website',cat:'Web Platform',d:'Private remote-consultation website with paid booking and gift forms, live chat room and payment-success notifications.',chips:['WordPress','Bookings','Payments'],url:'https://aureumnoesis.com'}
+];
+(function(){
+  var box=document.getElementById('stack');
+  box.innerHTML=PROJECTS.map(function(p,i){
+    var link=p.url? '<a class="link-arrow" href="'+p.url+'" target="_blank" rel="noopener">Visit live site →</a>' : '<a class="link-arrow" href="#contact">Ask about this project →</a>';
+    return '<article class="stack-card" style="top:'+(92+i*16)+'px;z-index:'+(i+1)+'">'
+      +'<div class="stack-vis '+p.g+'"><span class="tag">'+p.tag+'</span><span class="glyph">'+p.glyph+'</span><h3>'+p.t+'</h3></div>'
+      +'<div class="stack-body"><div class="cat">'+p.cat+'</div><h3>'+p.t+'</h3><p>'+p.d+'</p><div class="chips">'+p.chips.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>'+link+'</div></article>';
+  }).join('');
+})();
+/* ============ REVEAL ============ */
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{threshold:.08,rootMargin:'0px 0px 60px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})},2500);
+})();
+/* ============ NEWSLETTER ============ */
+document.getElementById('newsForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var email=document.getElementById('newsEmail').value.trim();
+  if(!email) return;
+  document.getElementById('newsOk').style.display='block';
+  e.target.style.display='none';
+  window.location.href='mailto:tensilstechnologies@gmail.com?subject='+encodeURIComponent('Newsletter subscription')+'&body='+encodeURIComponent('Please subscribe '+email+' to the Tensils Technology monthly newsletter.');
+});
+/* ============ CONTACT FORM -> WHATSAPP ============ */
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var fd=new FormData(e.target);
+  var text='Hi Tensils Technology! I am '+fd.get('name')+'. I need: '+fd.get('service')+'. Details: '+fd.get('msg');
+  window.open('https://wa.me/923492836687?text='+encodeURIComponent(text),'_blank');
+});
+</script>
+</body>
+</html>
