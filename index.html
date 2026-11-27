@@ -26,13 +26,41 @@ button,[role="button"],select,input,textarea{font-family:'Inter',sans-serif}
 .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
 ::selection{background:var(--teal);color:#04241F}
 /* ---------- PRELOADER ---------- */
-#preloader{position:fixed;inset:0;z-index:200;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s ease,visibility .6s}
-#preloader.done{opacity:0;visibility:hidden;pointer-events:none}
-.pre-mark{display:flex;align-items:center;gap:12px;font-family:'Sora';font-weight:800;font-size:22px;letter-spacing:.02em}
-.pre-pct{font-family:'Sora';font-weight:800;font-size:clamp(56px,10vw,96px);color:var(--teal);line-height:1;font-variant-numeric:tabular-nums}
-.pre-bar{width:min(320px,70vw);height:3px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
-.pre-bar i{display:block;height:100%;width:0%;background:var(--teal);border-radius:99px;transition:width .12s linear}
-.pre-sub{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted2)}
+#preloader{position:fixed;inset:0;z-index:200;overflow:hidden;transition:opacity .5s ease,visibility .5s}
+#preloader.gone{opacity:0;visibility:hidden;pointer-events:none}
+.pre-bg{position:absolute;inset:0;background:radial-gradient(640px 640px at 50% 46%,rgba(2,192,167,.12),transparent 62%),#050B16;transition:opacity .8s ease}
+#preloader.x1 .pre-bg{opacity:0}
+.pre-radar{position:absolute;left:50%;top:47%;width:170vmax;height:170vmax;transform:translate(-50%,-50%);opacity:0;scale:1.06;transition:opacity 1.8s ease,scale 2.6s ease;pointer-events:none}
+#preloader.show .pre-radar{opacity:1;scale:1}
+#preloader.x1 .pre-radar{opacity:0;transition-duration:.5s,.5s}
+.pre-center{position:absolute;left:50%;top:47%;width:min(350px,74vw);aspect-ratio:1;transform:translate(-50%,-50%) scale(.94);opacity:0;transition:opacity 1.4s ease,transform 1.6s cubic-bezier(.22,.8,.3,1);display:grid;place-items:center}
+#preloader.show .pre-center{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#preloader.x3 .pre-center{opacity:0;transform:translate(-50%,-50%) scale(.3);transition:opacity .35s ease,transform .42s ease-in}
+.pre-burst{position:absolute;inset:0;display:grid;place-items:center;transition:transform .55s cubic-bezier(.34,1.3,.4,1)}
+#preloader.x2 .pre-burst{transform:scale(1.45)}
+.pre-ring{position:absolute;inset:0;border:1px solid rgba(2,192,167,.55);border-radius:50%;box-shadow:0 0 70px rgba(2,192,167,.16),inset 0 0 70px rgba(2,192,167,.07)}
+.pre-ring::after{content:"";position:absolute;inset:11px;border:1px solid rgba(2,192,167,.16);border-radius:50%}
+.pre-rays{position:absolute;inset:-65%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(2,212,183,.55) 0deg .7deg,transparent .7deg 9deg);-webkit-mask-image:radial-gradient(circle,transparent 26%,#000 44%,transparent 70%);mask-image:radial-gradient(circle,transparent 26%,#000 44%,transparent 70%);opacity:0;pointer-events:none}
+#preloader.x2 .pre-rays{animation:preRays .65s ease-out forwards}
+@keyframes preRays{0%{opacity:0;transform:scale(.5) rotate(0deg)}35%{opacity:.95}100%{opacity:0;transform:scale(1.12) rotate(7deg)}}
+.mark.xl{width:150px;height:118px}
+.mark.xl i{width:138px;height:58px}
+.mark.xl i:last-child{top:56px}
+.pre-word{position:absolute;left:50%;top:calc(47% + min(175px,37vw) + 32px);transform:translateX(-50%);font-family:'Sora';font-weight:600;font-size:clamp(13px,2.4vw,17px);letter-spacing:.42em;text-indent:.42em;color:#fff;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity 1.4s ease}
+#preloader.show .pre-word{opacity:1}
+#preloader.x1 .pre-word{opacity:0;transition-duration:.4s}
+.pre-disc{position:absolute;left:50%;top:47%;width:min(350px,74vw);aspect-ratio:1;border-radius:50%;background:#050B16;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+#preloader.x3 .pre-disc{opacity:1}
+#preloader.x4 .pre-disc{transform:translate(-50%,-50%) scale(0);transition:transform .85s cubic-bezier(.7,0,.84,.45)}
+.pre-rule{position:absolute;left:0;right:0;top:84%;height:1px;background:rgba(255,255,255,.13);transition:opacity .4s ease}
+.pre-rule i{display:block;height:100%;width:0%;background:var(--teal);box-shadow:0 0 12px rgba(2,192,167,.7)}
+#preloader.x1 .pre-rule{opacity:0}
+.pre-foot{position:absolute;left:0;right:0;top:calc(84% + 20px);padding:0 clamp(20px,4vw,44px);display:flex;justify-content:space-between;align-items:flex-start;transition:opacity .4s ease}
+#preloader.x1 .pre-foot{opacity:0}
+.pre-tags{font-size:11.5px;font-weight:600;letter-spacing:.3em;color:var(--muted2);text-transform:uppercase;padding-top:14px}
+.pre-num{font-family:'Sora';font-weight:800;font-size:clamp(46px,6.5vw,68px);line-height:.95;color:#fff;font-variant-numeric:tabular-nums}
+.pre-num sup{color:var(--teal);font-size:.34em;font-weight:800;margin-left:2px}
+@media(max-width:620px){.pre-tags{letter-spacing:.18em;font-size:10.5px;padding-top:10px}}
 /* chevron logo mark */
 .mark{position:relative;width:38px;height:30px;flex:none}
 .mark i{position:absolute;left:0;width:34px;height:15px;background:var(--teal);clip-path:polygon(0 100%,50% 0,100% 100%,100% 62%,50% -38%,0 62%);display:block}
@@ -102,18 +130,9 @@ nav.main a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
 .hstat span{display:block;color:var(--muted);font-size:13.5px;margin-top:8px}
 .hero-note{color:var(--muted2);font-size:13.5px;max-width:230px;text-align:right}
 @media(max-width:700px){.hero-note{display:none}}
-/* ---------- HERO ENTRANCE (staged, on load) ---------- */
-.ent{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,.8,.3,1) var(--d,0s),transform .9s cubic-bezier(.22,.8,.3,1) var(--d,0s);will-change:opacity,transform}
-body.hero-in .ent{opacity:1;transform:none}
-.hero-ctas.ent{transform:translateY(26px) scale(.97)}
-body.hero-in .hero-ctas.ent{transform:none}
-.chev-stage.ent{transform:translate(48px,12px) scale(.93);transition-duration:1.15s,1.15s}
-body.hero-in .chev-stage.ent{transform:none}
-.hw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.15em;margin-bottom:-.15em}
-.hwi{display:inline-block;transform:translateY(112%);transition:transform 1s cubic-bezier(.16,.8,.26,1) var(--d,0s);will-change:transform}
-body.hero-in .hwi{transform:none}
-.chip{opacity:0;transition:opacity .8s ease var(--d,0s)}
-body.hero-in .chip{opacity:1}
+/* ---------- HERO ENTRANCE ---------- */
+/* No staged slide-in: hero elements sit in their final position and are
+   unveiled by the preloader's iris reveal (disc shrinks from the centre). */
 /* ---------- SCROLL INTRO ---------- */
 #intro{position:relative;height:676vh;background:radial-gradient(900px 600px at 50% 45%,rgba(2,192,167,.10),transparent 65%),var(--bg)}
 .intro-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -292,7 +311,8 @@ footer p{color:var(--muted);font-size:14.5px}
 .foot-bottom{border-top:1px solid var(--line);padding:20px 0 26px;font-size:13px;color:var(--muted2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .foot-big{font-family:'Sora';font-weight:800;font-size:clamp(52px,10.5vw,150px);line-height:.95;color:rgba(255,255,255,.05);text-align:center;padding:10px 0 0;user-select:none;letter-spacing:-.02em;white-space:nowrap;overflow:hidden}
 /* ---------- WHATSAPP RAIL ---------- */
-.rail{position:fixed;right:16px;bottom:96px;z-index:80;display:flex;flex-direction:column;gap:11px}
+.rail{position:fixed;right:16px;bottom:96px;z-index:80;display:flex;flex-direction:column;gap:11px;opacity:0;transform:translateX(18px);pointer-events:none;transition:opacity .7s ease,transform .7s ease}
+body.hero-in .rail{opacity:1;transform:none;pointer-events:auto;transition-delay:1s}
 .rail a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;text-decoration:none;box-shadow:0 12px 28px rgba(0,0,0,.45);transition:.3s;border:1px solid rgba(255,255,255,.14)}
 .rail a:hover{transform:scale(1.09)}
 .rail svg{width:25px;height:25px}
@@ -306,7 +326,7 @@ footer p{color:var(--muted);font-size:14.5px}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
   .reveal{opacity:1;transform:none}
-  .ent,.hwi,.chip{opacity:1 !important;transform:none !important;transition-delay:0s !important}
+  .rail{opacity:1 !important;transform:none !important;pointer-events:auto !important;transition-delay:0s !important}
   #intro{height:auto}.intro-sticky{position:static;height:auto;padding:80px 0}.intro-phase{display:flex !important;position:static;opacity:1 !important;pointer-events:auto;margin:30px 0;transform:none !important;filter:none !important;animation:none}
 }
 </style>
@@ -315,10 +335,29 @@ footer p{color:var(--muted);font-size:14.5px}
 
 <!-- PRELOADER -->
 <div id="preloader" aria-hidden="true">
-  <div class="pre-mark"><span class="mark"><i></i><i></i></span> TENSILS</div>
-  <div class="pre-pct" id="prePct">0%</div>
-  <div class="pre-bar"><i id="preBar"></i></div>
-  <div class="pre-sub">Loading experience</div>
+  <div class="pre-bg"></div>
+  <svg class="pre-radar" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <g fill="none" stroke="rgba(140,200,225,.08)" stroke-width="1">
+      <circle cx="500" cy="500" r="90"/><circle cx="500" cy="500" r="170"/><circle cx="500" cy="500" r="260"/><circle cx="500" cy="500" r="360"/><circle cx="500" cy="500" r="470"/><circle cx="500" cy="500" r="590"/><circle cx="500" cy="500" r="720"/>
+    </g>
+    <g stroke="rgba(140,200,225,.05)" stroke-width="1">
+      <line x1="500" y1="500" x2="1220" y2="500"/><line x1="500" y1="500" x2="1124" y2="860"/><line x1="500" y1="500" x2="860" y2="1124"/><line x1="500" y1="500" x2="500" y2="1220"/><line x1="500" y1="500" x2="140" y2="1124"/><line x1="500" y1="500" x2="-124" y2="860"/><line x1="500" y1="500" x2="-220" y2="500"/><line x1="500" y1="500" x2="-124" y2="140"/><line x1="500" y1="500" x2="140" y2="-124"/><line x1="500" y1="500" x2="500" y2="-220"/><line x1="500" y1="500" x2="860" y2="-124"/><line x1="500" y1="500" x2="1124" y2="140"/>
+    </g>
+  </svg>
+  <div class="pre-disc"></div>
+  <div class="pre-center">
+    <div class="pre-rays"></div>
+    <div class="pre-burst">
+      <div class="pre-ring"></div>
+      <span class="mark xl"><i></i><i></i></span>
+    </div>
+  </div>
+  <div class="pre-word">Tensils Technology</div>
+  <div class="pre-rule"><i id="preBar"></i></div>
+  <div class="pre-foot">
+    <div class="pre-tags">Websites · CRM · ERP · POS</div>
+    <div class="pre-num"><span id="prePct">0</span><sup>%</sup></div>
+  </div>
 </div>
 
 <header id="siteHeader">
@@ -344,26 +383,26 @@ footer p{color:var(--muted);font-size:14.5px}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow ent" style="--d:0s">Websites · CRM · ERP · POS</div>
-        <h1><span class="hw"><span class="hwi" style="--d:.10s">We</span></span> <span class="hw"><span class="hwi" style="--d:.18s">build</span></span> <span class="hw"><span class="hwi" style="--d:.26s">software</span></span><br><span class="teal"><span class="hw"><span class="hwi" style="--d:.40s">that</span></span> <span class="hw"><span class="hwi" style="--d:.48s">runs</span></span> <span class="hw"><span class="hwi" style="--d:.56s">your</span></span><br><span class="hw"><span class="hwi" style="--d:.70s">business.</span></span></span></h1>
-        <p class="lead ent" style="--d:.80s">Websites, customer systems, operations platforms and point-of-sale software — designed, built and maintained by one team, so your business runs on systems that actually fit how you work.</p>
-        <div class="hero-ctas ent" style="--d:.92s">
+        <div class="eyebrow">Websites · CRM · ERP · POS</div>
+        <h1>We build software<br><span class="teal">that runs your<br>business.</span></h1>
+        <p class="lead">Websites, customer systems, operations platforms and point-of-sale software — designed, built and maintained by one team, so your business runs on systems that actually fit how you work.</p>
+        <div class="hero-ctas">
           <a class="btn btn-white" href="#contact">Start a project <span class="arr">→</span></a>
           <a class="link-under" href="#work">See our work →</a>
         </div>
       </div>
-      <div class="chev-stage ent" style="--d:.30s" aria-hidden="true">
+      <div class="chev-stage" aria-hidden="true">
         <svg class="chev top" viewBox="0 0 560 300"><defs><pattern id="dots1" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="2.2" fill="rgba(255,255,255,.28)"/></pattern></defs><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="#02C0A7"/><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="url(#dots1)"/></svg>
         <svg class="chev bot" viewBox="0 0 560 300"><defs><pattern id="dots2" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="2.2" fill="rgba(255,255,255,.22)"/></pattern></defs><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="#486581"/><polygon points="60,215 280,60 500,215 405,215 280,128 155,215" fill="url(#dots2)"/></svg>
-        <span class="chip c1" style="--d:1.00s">Custom software</span>
-        <span class="chip c2" style="--d:1.08s">Web platforms</span>
-        <span class="chip c3" style="--d:1.16s">CRM &amp; ERP</span>
-        <span class="chip c4" style="--d:1.24s">POS systems</span>
-        <span class="chip c5" style="--d:1.32s">Dashboards</span>
-        <span class="chip c6" style="--d:1.40s">E-commerce</span>
+        <span class="chip c1">Custom software</span>
+        <span class="chip c2">Web platforms</span>
+        <span class="chip c3">CRM &amp; ERP</span>
+        <span class="chip c4">POS systems</span>
+        <span class="chip c5">Dashboards</span>
+        <span class="chip c6">E-commerce</span>
       </div>
     </div>
-    <div class="hero-stats ent" style="--d:1.10s">
+    <div class="hero-stats">
       <div class="hstats">
         <div class="hstat"><b><span class="count" data-to="100">100</span><sup>+</sup></b><span>Projects delivered</span></div>
         <div class="hstat"><b><span class="count" data-to="7">7</span></b><span>Core services, one team</span></div>
@@ -573,24 +612,46 @@ footer p{color:var(--muted);font-size:14.5px}
 <script>
 /* ============ PRELOADER ============ */
 (function(){
-  var pct=document.getElementById('prePct'), bar=document.getElementById('preBar'), pre=document.getElementById('preloader');
+  var pre=document.getElementById('preloader');
+  var pct=document.getElementById('prePct'), bar=document.getElementById('preBar');
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var n=0, dur=reduced?60:1500, t0=null, lastTick=performance.now();
+  var finished=false;
+  function finish(){
+    if(finished) return; finished=true;
+    pre.classList.add('gone');
+    document.body.classList.add('hero-in');
+    setTimeout(function(){ pre.style.display='none'; },700);
+  }
+  if(reduced){ pct.textContent='100'; bar.style.width='100%'; setTimeout(finish,150); return; }
+  var HOLD=92, dur=1900, linger=650, t0=null, lastTick=performance.now(), counting=true, stalled=false;
+  requestAnimationFrame(function(){ pre.classList.add('show'); });
   function step(ts){
+    if(finished||stalled) return;
     if(!t0)t0=ts;
     lastTick=performance.now();
     var p=Math.min((ts-t0)/dur,1);
-    n=Math.round(100*(1-Math.pow(1-p,2)));
-    pct.textContent=n+'%'; bar.style.width=n+'%';
-    if(p<1) requestAnimationFrame(step); else setTimeout(function(){pre.classList.add('done');document.body.classList.add('hero-in')},180);
+    var n=Math.round(HOLD*(1-Math.pow(1-p,3)));
+    pct.textContent=n; bar.style.width=n+'%';
+    if(p<1){ requestAnimationFrame(step); return; }
+    counting=false;
+    /* linger at 92%, then exit: bg fades -> mark bursts -> collapses into a
+       dark disc -> disc shrinks away (iris reveal, centre unveiled last) */
+    setTimeout(function(){
+      pre.classList.add('x1');
+      setTimeout(function(){ pre.classList.add('x2'); },420);
+      setTimeout(function(){ pre.classList.add('x3'); },950);
+      setTimeout(function(){ pre.classList.add('x4'); },1350);
+      setTimeout(finish,2250);
+    },linger);
   }
   requestAnimationFrame(step);
-  /* watchdog: if animation frames stall (hidden/background tab), never leave the hero hidden */
+  /* watchdog: if animation frames stall (hidden/background tab) during the
+     count, never leave the hero hidden behind the loader */
   var wd=setInterval(function(){
-    if(pre.classList.contains('done')){ clearInterval(wd); return; }
-    if(performance.now()-lastTick>450){ pre.classList.add('done'); document.body.classList.add('hero-in'); clearInterval(wd); }
+    if(finished){ clearInterval(wd); return; }
+    if(counting && performance.now()-lastTick>500){ stalled=true; finish(); clearInterval(wd); }
   },200);
-  setTimeout(function(){pre.classList.add('done');document.body.classList.add('hero-in')},3200); /* safety */
+  setTimeout(finish,7000); /* safety */
 })();
 /* ============ HEADER / NAV ============ */
 var header=document.getElementById('siteHeader');
@@ -634,21 +695,31 @@ document.querySelectorAll('#mainNav a').forEach(function(a){a.addEventListener('
   window.addEventListener('resize',size);
   cv.parentElement.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top;});
 })();
-/* ============ COUNTERS ============ */
+/* ============ COUNTERS (run once the hero is revealed) ============ */
 (function(){
   var els=document.querySelectorAll('.count');
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduced) return; /* final values already in markup */
-  els.forEach(function(el){
-    var to=+el.dataset.to, start=Date.now(), dur=1200;
-    el.textContent='0';
-    var iv=setInterval(function(){
-      var p=Math.min((Date.now()-start)/dur,1);
-      el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
-      if(p>=1){ el.textContent=to; clearInterval(iv); }
-    },30);
-    setTimeout(function(){ el.textContent=to; clearInterval(iv); },2200); /* guarantee final value */
-  });
+  var started=false;
+  function start(){
+    if(started) return; started=true;
+    els.forEach(function(el){
+      var to=+el.dataset.to, start=Date.now(), dur=1200;
+      el.textContent='0';
+      var iv=setInterval(function(){
+        var p=Math.min((Date.now()-start)/dur,1);
+        el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+        if(p>=1){ el.textContent=to; clearInterval(iv); }
+      },30);
+      setTimeout(function(){ el.textContent=to; clearInterval(iv); },2200); /* guarantee final value */
+    });
+  }
+  if(document.body.classList.contains('hero-in')) start();
+  else{
+    var mo=new MutationObserver(function(){ if(document.body.classList.contains('hero-in')){ start(); mo.disconnect(); } });
+    mo.observe(document.body,{attributes:true,attributeFilter:['class']});
+    setTimeout(start,6000); /* never leave the stats sitting at zero */
+  }
 })();
 /* ============ SCROLL INTRO ============ */
 (function(){
