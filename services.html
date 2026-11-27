@@ -48,7 +48,7 @@
 
       /* ---------- Header ---------- */
       .site-header{
-        position:sticky; top:0; z-index:60;
+        position:relative; z-index:60;
         background:rgba(5,11,22,.82);
         backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
         border-bottom:1px solid var(--line-soft);
@@ -116,33 +116,51 @@
       .stat .num em{ font-style:normal; color:var(--teal); }
       .stat .lbl{ margin-top:.55rem; color:var(--muted); font-size:.95rem; font-weight:600; }
 
-      /* ---------- Service rows ---------- */
-      .services{ padding:2rem 0 1rem; }
-      .service{
-        display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.2rem,5vw,5rem);
-        align-items:center; padding:3.6rem 0;
+      /* ---------- Services: sticky stage + scrolling list ---------- */
+      .services{ padding:1rem 0 2rem; }
+      .services-layout{
+        display:grid; grid-template-columns:44fr 56fr;
+        gap:clamp(2.4rem,5vw,5.5rem); align-items:start;
       }
-      .service + .service{ border-top:1px solid var(--line-soft); }
-      .service.flip .svc-media{ order:2; }
-      .service.flip .svc-text{ order:1; }
-      .svc-media{
-        position:relative; border-radius:var(--radius); overflow:hidden;
+      .svc-stage{
+        position:sticky; top:0; align-self:start;
+        height:100vh; height:100svh;
+        display:flex; align-items:center;
+      }
+      .stage-panel{
+        position:relative; width:100%; overflow:hidden;
+        border-radius:var(--radius);
         background:linear-gradient(150deg, var(--panel-2), var(--panel) 60%);
         border:1px solid var(--line-soft);
         aspect-ratio:4/3.1;
-        display:flex; align-items:center; justify-content:center;
       }
-      .svc-media::before{
+      .stage-panel::before{
         content:""; position:absolute; inset:0;
         background-image:
           linear-gradient(rgba(148,178,214,.07) 1px, transparent 1px),
           linear-gradient(90deg, rgba(148,178,214,.07) 1px, transparent 1px);
         background-size:44px 44px;
       }
-      .svc-media .glow{ position:absolute; width:340px; height:340px; border-radius:50%; filter:blur(6px); pointer-events:none; }
+      .stage-layer{
+        position:absolute; inset:0;
+        display:flex; align-items:center; justify-content:center;
+        opacity:0; transition:opacity .7s ease; pointer-events:none;
+      }
+      .stage-layer.is-active{ opacity:1; }
+      .stage-layer .glow{ position:absolute; width:340px; height:340px; border-radius:50%; filter:blur(6px); pointer-events:none; }
       .glow-tr{ top:-150px; right:-120px; background:radial-gradient(circle, rgba(2,192,167,.30), transparent 65%); }
       .glow-bl{ bottom:-150px; left:-120px; background:radial-gradient(circle, rgba(2,192,167,.26), transparent 65%); }
-      .svc-media svg.illus{ position:relative; width:72%; max-width:400px; height:auto; }
+      .stage-layer svg.illus{ position:relative; width:72%; max-width:400px; height:auto; }
+      .svc-list{ display:flex; flex-direction:column; }
+      .service{
+        min-height:88vh; display:flex; align-items:center;
+        padding:3rem 0;
+        opacity:.28; transition:opacity .7s ease;
+      }
+      .service.is-active{ opacity:1; }
+      .service:not(.is-active) .svc-text,
+      .service:not(.is-active) .svc-text *{ color:#5D6B7F !important; }
+      .service:not(.is-active) .explore .arr{ border-color:rgba(93,107,127,.55); }
       .svc-index{
         font-family:"Sora",sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.3em; color:var(--teal);
         display:flex; align-items:center; gap:.8rem; margin-bottom:1.1rem;
@@ -252,6 +270,7 @@
       .rv.in{ opacity:1; transform:none; }
       @media (prefers-reduced-motion: reduce){
         .rv{ opacity:1; transform:none; transition:none; }
+        .stage-layer, .service{ transition:none; }
         .rv:not(.in), .rv:not(.in) *{ color:inherit !important; }
         html{ scroll-behavior:auto; }
       }
@@ -270,9 +289,11 @@
         .hero{ padding:3.4rem 0 3.2rem; }
         .hero-grid{ grid-template-columns:1fr; gap:1.4rem; align-items:start; }
         .stats{ grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:2.8rem; }
-        .service{ grid-template-columns:1fr; padding:2.8rem 0; gap:2rem; }
-        .service.flip .svc-media{ order:0; } .service.flip .svc-text{ order:1; }
-        .svc-media{ aspect-ratio:16/10.5; }
+        .services-layout{ display:block; }
+        .svc-stage{ height:auto; padding:.9rem 0 1.1rem; background:var(--bg); z-index:5; }
+        .stage-panel{ aspect-ratio:16/10.5; }
+        .stage-layer svg.illus{ width:60%; }
+        .service{ min-height:0; padding:2.4rem 0; }
         .steps{ grid-template-columns:1fr; gap:2.2rem; }
         .steps::before{ left:8px; right:auto; top:0; bottom:0; width:2px; height:auto; background:linear-gradient(180deg, var(--teal), rgba(2,192,167,.08)); }
         .step{ padding-top:0; padding-left:2.4rem; }
@@ -386,11 +407,10 @@
 
     <!-- ================= SERVICES ================= -->
     <main class="services">
-      <div class="wrap">
-
-        <!-- 1 · WordPress -->
-        <article class="service" id="wordpress">
-          <div class="svc-media rv">
+      <div class="wrap services-layout">
+        <div class="svc-stage" aria-hidden="true">
+          <div class="stage-panel">
+          <div class="stage-layer is-active" data-layer="0">
             <div class="glow glow-tr" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,196 268,140 160,86 52,140" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -414,24 +434,9 @@
               <rect x="66" y="150" width="40" height="26" rx="5" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
               <path d="M74 160h24M74 168h14" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
-            <div class="svc-index">01 — WEBSITES</div>
-            <h2>WordPress</h2>
-            <p>Business websites, landing pages and content sites built on WordPress and Elementor — fast to launch, easy for you to edit, and structured so the page you approve is exactly the page that goes live.</p>
-            <ul class="tags">
-              <li>Elementor</li><li>WooCommerce</li><li>Custom Themes</li><li>Landing Pages</li><li>Speed Optimisation</li>
-            </ul>
-            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20WordPress%20website." target="_blank" rel="noopener">
-              Explore WordPress
-              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 2 · Shopify -->
-        <article class="service flip" id="shopify">
-          <div class="svc-media rv">
+          <div class="stage-layer" data-layer="1">
             <div class="glow glow-bl" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,200 272,142 160,86 48,142" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -456,24 +461,9 @@
                 <path d="M94 146h8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
               </g>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
-            <div class="svc-index">02 — ECOMMERCE</div>
-            <h2>Shopify</h2>
-            <p>Complete Shopify stores — theme setup and redesigns, product and collection structure, bundles, discount logic and checkout flows that stay compliant and keep selling while you sleep.</p>
-            <ul class="tags">
-              <li>Theme Setup</li><li>Store Redesign</li><li>Bundles &amp; Boxes</li><li>Apps &amp; Integrations</li><li>Checkout Flows</li>
-            </ul>
-            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20Shopify%20store." target="_blank" rel="noopener">
-              Explore Shopify
-              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 3 · Web Development -->
-        <article class="service" id="web-development">
-          <div class="svc-media rv">
+          <div class="stage-layer" data-layer="2">
             <div class="glow glow-tr" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -496,24 +486,9 @@
               <rect x="70" y="158" width="52" height="10" rx="5" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
               <circle cx="82" cy="163" r="3" fill="#02C0A7"/><path d="M92 163h22" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
-            <div class="svc-index">03 — CUSTOM BUILDS</div>
-            <h2>Web Development</h2>
-            <p>When a template is not enough: custom websites and web apps built with React and Node.js — portfolios, booking systems, client portals and tools shaped exactly around how your business works.</p>
-            <ul class="tags">
-              <li>React</li><li>Node.js</li><li>REST APIs</li><li>Booking Systems</li><li>Client Portals</li>
-            </ul>
-            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20custom%20web%20development." target="_blank" rel="noopener">
-              Explore Web Development
-              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 4 · SEO -->
-        <article class="service flip" id="seo">
-          <div class="svc-media rv">
+          <div class="stage-layer" data-layer="3">
             <div class="glow glow-bl" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -537,24 +512,9 @@
                 <circle cx="250" cy="163" r="5" fill="#2E8CFF"/>
               </g>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
-            <div class="svc-index">04 — GROWTH</div>
-            <h2>SEO</h2>
-            <p>Search visibility that compounds: technical fixes, page structure, metadata and content foundations so the right customers find you on Google — and keep finding you month after month.</p>
-            <ul class="tags">
-              <li>Technical SEO</li><li>On-Page SEO</li><li>Local SEO</li><li>Keyword Research</li><li>Site Audits</li>
-            </ul>
-            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20SEO%20for%20my%20website." target="_blank" rel="noopener">
-              Explore SEO
-              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 5 · ERP -->
-        <article class="service" id="erp">
-          <div class="svc-media rv">
+          <div class="stage-layer" data-layer="4">
             <div class="glow glow-tr" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,204 276,146 160,90 44,146" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -590,24 +550,9 @@
                 <rect x="122" y="190" width="46" height="4" rx="2" fill="#02C0A7"/>
               </g>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
-            <div class="svc-index">05 — OPERATIONS</div>
-            <h2>ERP</h2>
-            <p>One system for the whole business: TensilsOS brings HR, CRM, projects, tasks, attendance and analytics into a single platform with role-based access — so every team works from the same numbers.</p>
-            <ul class="tags">
-              <li>TensilsOS</li><li>HR &amp; Payroll</li><li>CRM</li><li>Role-Based Access</li><li>Analytics</li>
-            </ul>
-            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20an%20ERP%20system%20for%20my%20business." target="_blank" rel="noopener">
-              Explore ERP
-              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 6 · Business Dashboard -->
-        <article class="service flip" id="business-dashboard">
-          <div class="svc-media rv">
+          <div class="stage-layer" data-layer="5">
             <div class="glow glow-bl" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -632,24 +577,9 @@
                 <path d="M220 160h36M220 169h24" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
               </g>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
-            <div class="svc-index">06 — INSIGHT</div>
-            <h2>Business Dashboard</h2>
-            <p>Custom dashboards that turn scattered data into one clear view — sales, orders, stock and team performance in real time, so decisions take minutes instead of end-of-month spreadsheets.</p>
-            <ul class="tags">
-              <li>Custom Dashboards</li><li>Real-Time Reports</li><li>Sales &amp; Stock Views</li><li>Data Visualisation</li>
-            </ul>
-            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20business%20dashboard." target="_blank" rel="noopener">
-              Explore Business Dashboard
-              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 7 · Management Systems -->
-        <article class="service" id="management-systems">
-          <div class="svc-media rv">
+          <div class="stage-layer" data-layer="6">
             <div class="glow glow-tr" aria-hidden="true"></div>
             <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
               <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
@@ -679,8 +609,103 @@
                 <path d="M122 176l24 6M198 176l-24 6" stroke="rgba(148,178,214,.35)" stroke-width="1.6" stroke-dasharray="3 5"/>
               </g>
             </svg>
+          
           </div>
-          <div class="svc-text rv">
+          </div>
+        </div>
+        <div class="svc-list">
+        <article class="service is-active" id="wordpress" data-index="0">
+          <div class="svc-text">
+            <div class="svc-index">01 — WEBSITES</div>
+            <h2>WordPress</h2>
+            <p>Business websites, landing pages and content sites built on WordPress and Elementor — fast to launch, easy for you to edit, and structured so the page you approve is exactly the page that goes live.</p>
+            <ul class="tags">
+              <li>Elementor</li><li>WooCommerce</li><li>Custom Themes</li><li>Landing Pages</li><li>Speed Optimisation</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20WordPress%20website." target="_blank" rel="noopener">
+              Explore WordPress
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="service" id="shopify" data-index="1">
+          <div class="svc-text">
+            <div class="svc-index">02 — ECOMMERCE</div>
+            <h2>Shopify</h2>
+            <p>Complete Shopify stores — theme setup and redesigns, product and collection structure, bundles, discount logic and checkout flows that stay compliant and keep selling while you sleep.</p>
+            <ul class="tags">
+              <li>Theme Setup</li><li>Store Redesign</li><li>Bundles &amp; Boxes</li><li>Apps &amp; Integrations</li><li>Checkout Flows</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20Shopify%20store." target="_blank" rel="noopener">
+              Explore Shopify
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="service" id="web-development" data-index="2">
+          <div class="svc-text">
+            <div class="svc-index">03 — CUSTOM BUILDS</div>
+            <h2>Web Development</h2>
+            <p>When a template is not enough: custom websites and web apps built with React and Node.js — portfolios, booking systems, client portals and tools shaped exactly around how your business works.</p>
+            <ul class="tags">
+              <li>React</li><li>Node.js</li><li>REST APIs</li><li>Booking Systems</li><li>Client Portals</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20custom%20web%20development." target="_blank" rel="noopener">
+              Explore Web Development
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="service" id="seo" data-index="3">
+          <div class="svc-text">
+            <div class="svc-index">04 — GROWTH</div>
+            <h2>SEO</h2>
+            <p>Search visibility that compounds: technical fixes, page structure, metadata and content foundations so the right customers find you on Google — and keep finding you month after month.</p>
+            <ul class="tags">
+              <li>Technical SEO</li><li>On-Page SEO</li><li>Local SEO</li><li>Keyword Research</li><li>Site Audits</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20SEO%20for%20my%20website." target="_blank" rel="noopener">
+              Explore SEO
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="service" id="erp" data-index="4">
+          <div class="svc-text">
+            <div class="svc-index">05 — OPERATIONS</div>
+            <h2>ERP</h2>
+            <p>One system for the whole business: TensilsOS brings HR, CRM, projects, tasks, attendance and analytics into a single platform with role-based access — so every team works from the same numbers.</p>
+            <ul class="tags">
+              <li>TensilsOS</li><li>HR &amp; Payroll</li><li>CRM</li><li>Role-Based Access</li><li>Analytics</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20an%20ERP%20system%20for%20my%20business." target="_blank" rel="noopener">
+              Explore ERP
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="service" id="business-dashboard" data-index="5">
+          <div class="svc-text">
+            <div class="svc-index">06 — INSIGHT</div>
+            <h2>Business Dashboard</h2>
+            <p>Custom dashboards that turn scattered data into one clear view — sales, orders, stock and team performance in real time, so decisions take minutes instead of end-of-month spreadsheets.</p>
+            <ul class="tags">
+              <li>Custom Dashboards</li><li>Real-Time Reports</li><li>Sales &amp; Stock Views</li><li>Data Visualisation</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20business%20dashboard." target="_blank" rel="noopener">
+              Explore Business Dashboard
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <article class="service" id="management-systems" data-index="6">
+          <div class="svc-text">
             <div class="svc-index">07 — SYSTEMS</div>
             <h2>Management Systems</h2>
             <p>Purpose-built systems for the way you already work — POS for retail and restaurants, appointment booking, school, clinic and property management — replacing registers, notebooks and scattered chats.</p>
@@ -693,7 +718,7 @@
             </a>
           </div>
         </article>
-
+        </div>
       </div>
     </main>
 
@@ -843,6 +868,25 @@
         revealEls.forEach(function (el) { io.observe(el); });
       } else {
         revealEls.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      // Services: crossfade the pinned stage to the service sitting at the
+      // viewport centre, and keep only that service at full brightness
+      var svcItems = document.querySelectorAll('.svc-list .service');
+      var stageLayers = document.querySelectorAll('.stage-layer');
+      function setActiveService(idx) {
+        svcItems.forEach(function (item, i) { item.classList.toggle('is-active', i === idx); });
+        stageLayers.forEach(function (layer, i) { layer.classList.toggle('is-active', i === idx); });
+      }
+      if ('IntersectionObserver' in window && svcItems.length) {
+        var svcIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActiveService(Number(entry.target.getAttribute('data-index')));
+            }
+          });
+        }, { rootMargin: '-48% 0px -48% 0px', threshold: 0 });
+        svcItems.forEach(function (item) { svcIO.observe(item); });
       }
     </script>
   </body>
