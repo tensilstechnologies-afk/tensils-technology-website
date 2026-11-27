@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>Our Services — Tensils Technology</title>
+    <meta name="description" content="WordPress, Shopify, web development, SEO, ERP, business dashboards and management systems — built by Tensils Technology, Sahiwal, Pakistan." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --bg:#050B16;
+        --bg-2:#081222;
+        --panel:#0A1626;
+        --panel-2:#0C1B31;
+        --line:rgba(148,178,214,.14);
+        --line-soft:rgba(148,178,214,.08);
+        --teal:#02C0A7;
+        --teal-soft:rgba(2,192,167,.14);
+        --blue:#2E8CFF;
+        --white:#F3F7FB;
+        --muted:#94A3B8;
+        --muted-2:#6E7E93;
+        --radius:28px;
+        --wrap:1200px;
+      }
+      *{ box-sizing:border-box; }
+      html{ scroll-behavior:smooth; }
+      body{
+        margin:0;
+        background:var(--bg);
+        color:var(--white);
+        font-family:"Manrope",system-ui,sans-serif;
+        font-size:16px;
+        line-height:1.65;
+        -webkit-font-smoothing:antialiased;
+        overflow-x:hidden;
+      }
+      h1,h2,h3{ font-family:"Sora",sans-serif; margin:0; line-height:1.12; letter-spacing:-.01em; }
+      p{ margin:0; }
+      a{ color:inherit; text-decoration:none; }
+      ul{ margin:0; padding:0; list-style:none; }
+      .wrap{ width:min(var(--wrap),100% - 3rem); margin-inline:auto; }
+      ::selection{ background:var(--teal); color:#04241F; }
+
+      /* ---------- Header ---------- */
+      .site-header{
+        position:sticky; top:0; z-index:60;
+        background:rgba(5,11,22,.82);
+        backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+        border-bottom:1px solid var(--line-soft);
+      }
+      .header-in{ display:flex; align-items:center; gap:2rem; min-height:72px; }
+      .brand{ display:flex; align-items:center; gap:.65rem; font-family:"Sora",sans-serif; font-weight:800; letter-spacing:.14em; font-size:.95rem; white-space:nowrap; }
+      .brand svg{ flex:none; }
+      .brand small{ display:block; font-size:.58rem; letter-spacing:.34em; color:var(--teal); font-weight:700; }
+      .main-nav{ margin-left:auto; display:flex; align-items:center; gap:2rem; }
+      .main-nav a{ font-size:.92rem; font-weight:600; color:var(--muted); padding:.5rem 0; transition:color .25s; }
+      .main-nav a:hover{ color:var(--white); }
+      .main-nav a.active{ color:var(--teal); }
+      .header-cta{
+        margin-left:.5rem; display:inline-flex; align-items:center; gap:.5rem;
+        background:var(--teal); color:#03211C; font-weight:800; font-size:.9rem;
+        padding:.68rem 1.35rem; border-radius:999px; min-height:44px;
+        transition:transform .25s, box-shadow .25s;
+      }
+      .header-cta:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(2,192,167,.35); }
+      .nav-toggle{ display:none; margin-left:auto; background:none; border:1px solid var(--line); border-radius:10px; width:44px; height:44px; cursor:pointer; align-items:center; justify-content:center; }
+      .nav-toggle span{ display:block; width:20px; height:2px; background:var(--white); position:relative; }
+      .nav-toggle span::before,.nav-toggle span::after{ content:""; position:absolute; left:0; width:20px; height:2px; background:var(--white); }
+      .nav-toggle span::before{ top:-6px; } .nav-toggle span::after{ top:6px; }
+
+      /* ---------- Floating rail ---------- */
+      .rail{
+        position:fixed; left:26px; top:50%; transform:translateY(-50%); z-index:50;
+        display:flex; flex-direction:column; align-items:center; gap:.7rem;
+      }
+      .rail::before,.rail::after{ content:""; width:1px; height:56px; background:linear-gradient(var(--line),transparent); }
+      .rail::after{ background:linear-gradient(transparent,var(--line)); }
+      .rail a{
+        width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+        display:flex; align-items:center; justify-content:center; color:var(--muted);
+        background:rgba(8,18,34,.6); transition:color .25s, border-color .25s, background .25s;
+      }
+      .rail a:hover{ color:#03211C; background:var(--teal); border-color:var(--teal); }
+      @media (max-width:1180px){ .rail{ display:none; } }
+
+      /* ---------- Hero ---------- */
+      .hero{ position:relative; padding:5.2rem 0 4.6rem; overflow:hidden; }
+      .hero-bg{ position:absolute; inset:0; pointer-events:none; }
+      .hero-bg svg{ width:100%; height:100%; }
+      .hero-glow{ position:absolute; width:640px; height:640px; border-radius:50%; background:radial-gradient(circle, rgba(2,192,167,.13), transparent 65%); top:-260px; right:-140px; pointer-events:none; }
+      .hero-glow-2{ position:absolute; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(46,140,255,.10), transparent 65%); bottom:-260px; left:-160px; pointer-events:none; }
+      .breadcrumb{ display:flex; align-items:center; gap:.7rem; font-size:.78rem; font-weight:800; letter-spacing:.22em; position:relative; }
+      .breadcrumb a{ color:var(--muted); transition:color .25s; }
+      .breadcrumb a:hover{ color:var(--white); }
+      .breadcrumb .diamond{ color:var(--teal); font-size:.6rem; }
+      .breadcrumb .current{ color:var(--teal); }
+      .hero-grid{ position:relative; display:grid; grid-template-columns:1.5fr 1fr; gap:3rem; align-items:end; margin-top:2.2rem; }
+      .hero h1{ font-size:clamp(2.7rem,5.6vw,4.6rem); font-weight:800; }
+      .hero h1 .grad{
+        background:linear-gradient(92deg, var(--teal) 10%, var(--blue) 90%);
+        -webkit-background-clip:text; background-clip:text; color:transparent;
+      }
+      .hero-side p{ color:var(--muted); font-size:1.06rem; max-width:38ch; }
+      .hero-side .mini-line{ width:52px; height:3px; border-radius:3px; background:var(--teal); margin-bottom:1.1rem; }
+      .stats{
+        position:relative; margin-top:4rem; padding-top:2.4rem;
+        border-top:1px solid var(--line-soft);
+        display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;
+      }
+      .stat .num{ font-family:"Sora",sans-serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:800; color:var(--white); line-height:1; }
+      .stat .num em{ font-style:normal; color:var(--teal); }
+      .stat .lbl{ margin-top:.55rem; color:var(--muted); font-size:.95rem; font-weight:600; }
+
+      /* ---------- Service rows ---------- */
+      .services{ padding:2rem 0 1rem; }
+      .service{
+        display:grid; grid-template-columns:1fr 1fr; gap:clamp(2.2rem,5vw,5rem);
+        align-items:center; padding:3.6rem 0;
+      }
+      .service + .service{ border-top:1px solid var(--line-soft); }
+      .service.flip .svc-media{ order:2; }
+      .service.flip .svc-text{ order:1; }
+      .svc-media{
+        position:relative; border-radius:var(--radius); overflow:hidden;
+        background:linear-gradient(150deg, var(--panel-2), var(--panel) 60%);
+        border:1px solid var(--line-soft);
+        aspect-ratio:4/3.1;
+        display:flex; align-items:center; justify-content:center;
+      }
+      .svc-media::before{
+        content:""; position:absolute; inset:0;
+        background-image:
+          linear-gradient(rgba(148,178,214,.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(148,178,214,.07) 1px, transparent 1px);
+        background-size:44px 44px;
+      }
+      .svc-media .glow{ position:absolute; width:340px; height:340px; border-radius:50%; filter:blur(6px); pointer-events:none; }
+      .glow-tr{ top:-150px; right:-120px; background:radial-gradient(circle, rgba(2,192,167,.30), transparent 65%); }
+      .glow-bl{ bottom:-150px; left:-120px; background:radial-gradient(circle, rgba(2,192,167,.26), transparent 65%); }
+      .svc-media svg.illus{ position:relative; width:72%; max-width:400px; height:auto; }
+      .svc-index{
+        font-family:"Sora",sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.3em; color:var(--teal);
+        display:flex; align-items:center; gap:.8rem; margin-bottom:1.1rem;
+      }
+      .svc-index::after{ content:""; width:44px; height:1px; background:var(--teal); opacity:.6; }
+      .svc-text h2{ font-size:clamp(2.1rem,3.8vw,3.3rem); font-weight:800; }
+      .svc-text > p{ margin-top:1.15rem; color:var(--muted); font-size:1.05rem; max-width:52ch; }
+      .tags{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.5rem; }
+      .tags li{
+        font-size:.8rem; font-weight:700; color:#C7D3E2;
+        border:1px solid var(--line); border-radius:999px; padding:.42rem .9rem;
+        background:rgba(148,178,214,.05);
+      }
+      .explore{
+        margin-top:2rem; display:inline-flex; align-items:center; gap:.9rem;
+        font-family:"Sora",sans-serif; font-weight:700; font-size:1.02rem; color:var(--white);
+        min-height:48px;
+      }
+      .explore .arr{
+        width:46px; height:46px; border-radius:50%; flex:none;
+        border:1.5px solid var(--teal); color:var(--teal);
+        display:flex; align-items:center; justify-content:center;
+        transition:background .3s, color .3s, transform .3s;
+      }
+      .explore:hover .arr{ background:var(--teal); color:#03211C; transform:translateX(4px); }
+      .explore:hover{ color:var(--teal); }
+      .explore{ transition:color .3s; }
+
+      /* ---------- How we work ---------- */
+      .how{ padding:5.5rem 0 6rem; }
+      .eyebrow{ font-size:.78rem; font-weight:800; letter-spacing:.3em; color:var(--teal); display:flex; align-items:center; gap:.8rem; }
+      .eyebrow::before{ content:""; width:34px; height:1px; background:var(--teal); }
+      .how h2{ font-size:clamp(2rem,4vw,3.1rem); font-weight:800; margin-top:1.1rem; max-width:22ch; }
+      .how-sub{ margin-top:1rem; color:var(--muted); max-width:56ch; }
+      .steps{ position:relative; margin-top:3.6rem; display:grid; grid-template-columns:repeat(3,1fr); gap:2.6rem; }
+      .steps::before{
+        content:""; position:absolute; top:9px; left:0; right:0; height:2px;
+        background:linear-gradient(90deg, var(--teal), rgba(2,192,167,.25) 70%, rgba(2,192,167,.06));
+      }
+      .step{ position:relative; padding-top:2.4rem; }
+      .step::before{
+        content:""; position:absolute; top:2px; left:0; width:16px; height:16px; border-radius:50%;
+        background:var(--bg); border:2px solid rgba(2,192,167,.45);
+      }
+      .step:first-child::before{ background:var(--teal); border-color:var(--teal); box-shadow:0 0 0 6px rgba(2,192,167,.16), 0 0 22px rgba(2,192,167,.55); }
+      .step .step-no{ font-family:"Sora",sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.26em; color:var(--teal); }
+      .step h3{ font-size:1.55rem; font-weight:700; margin-top:.5rem; }
+      .step ul{ margin-top:1.1rem; display:grid; gap:.65rem; }
+      .step li{ color:var(--muted); font-size:.98rem; display:flex; gap:.7rem; align-items:baseline; }
+      .step li::before{ content:""; flex:none; width:7px; height:7px; background:var(--teal); transform:rotate(45deg) translateY(-1px); }
+
+      /* ---------- CTA panel ---------- */
+      .cta-section{ padding:0 0 6rem; }
+      .cta{
+        position:relative; overflow:hidden; border-radius:36px;
+        background:linear-gradient(120deg, #06302B 0%, #07554B 45%, #0A7A6A 100%);
+        padding:clamp(2.6rem,6vw,4.6rem);
+      }
+      .cta::before{
+        content:""; position:absolute; inset:0;
+        background-image:
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size:52px 52px;
+        mask-image:linear-gradient(90deg, transparent, #000 55%);
+        -webkit-mask-image:linear-gradient(90deg, transparent, #000 55%);
+      }
+      .cta-chevrons{ position:absolute; right:-30px; top:50%; transform:translateY(-50%); opacity:.5; pointer-events:none; }
+      .cta-in{ position:relative; max-width:640px; }
+      .cta .eyebrow{ color:#7CF0DD; }
+      .cta .eyebrow::before{ background:#7CF0DD; }
+      .cta h2{ font-size:clamp(2.4rem,5vw,4rem); font-weight:800; margin-top:1.1rem; }
+      .cta p{ margin-top:1.1rem; color:rgba(230,250,246,.82); max-width:48ch; }
+      .cta-btns{ margin-top:2.2rem; display:flex; flex-wrap:wrap; gap:1rem; }
+      .btn{
+        display:inline-flex; align-items:center; gap:.6rem; min-height:52px;
+        padding:.85rem 1.9rem; border-radius:999px; font-weight:800; font-size:.98rem;
+        transition:transform .25s, box-shadow .25s, background .25s, color .25s;
+      }
+      .btn-white{ background:#fff; color:#05302A; }
+      .btn-white:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,.3); }
+      .btn-dark{ background:rgba(3,20,18,.55); color:#fff; border:1px solid rgba(255,255,255,.35); }
+      .btn-dark:hover{ background:rgba(3,20,18,.85); transform:translateY(-2px); }
+
+      /* ---------- Footer ---------- */
+      footer{ border-top:1px solid var(--line-soft); background:var(--bg-2); }
+      .foot-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:2.6rem; padding:4rem 0 3rem; }
+      .foot-brand p{ margin-top:1.1rem; color:var(--muted); font-size:.95rem; max-width:34ch; }
+      footer h4{ font-family:"Sora",sans-serif; font-size:.82rem; letter-spacing:.24em; color:var(--white); margin:0 0 1.2rem; text-transform:uppercase; }
+      .foot-links{ display:grid; gap:.6rem; }
+      .foot-links a{ color:var(--muted); font-size:.95rem; padding:.2rem 0; transition:color .25s; }
+      .foot-links a:hover{ color:var(--teal); }
+      .foot-contact{ display:grid; gap:.9rem; color:var(--muted); font-size:.95rem; }
+      .foot-contact a{ color:var(--white); font-weight:700; transition:color .25s; }
+      .foot-contact a:hover{ color:var(--teal); }
+      .foot-contact .k{ display:block; font-size:.72rem; letter-spacing:.22em; color:var(--muted-2); font-weight:800; margin-bottom:.15rem; }
+      .foot-bottom{
+        border-top:1px solid var(--line-soft); padding:1.4rem 0;
+        display:flex; flex-wrap:wrap; gap:.8rem; align-items:center; justify-content:space-between;
+        color:var(--muted-2); font-size:.86rem;
+      }
+
+      /* ---------- Scroll reveal: flat grey -> full colour ---------- */
+      .rv{ opacity:.35; transform:translateY(18px); transition:opacity .9s ease, transform .9s ease; }
+      .rv, .rv *{ transition-property:opacity, transform, color, border-color, background-color; transition-duration:.9s; transition-timing-function:ease; }
+      .rv:not(.in), .rv:not(.in) *{ color:#5D6B7F !important; }
+      .rv.in{ opacity:1; transform:none; }
+      @media (prefers-reduced-motion: reduce){
+        .rv{ opacity:1; transform:none; transition:none; }
+        .rv:not(.in), .rv:not(.in) *{ color:inherit !important; }
+        html{ scroll-behavior:auto; }
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width:900px){
+        .main-nav{
+          position:absolute; top:72px; left:0; right:0; flex-direction:column; align-items:flex-start;
+          gap:0; padding:1rem 1.5rem 1.4rem; background:rgba(5,11,22,.97);
+          border-bottom:1px solid var(--line-soft); display:none;
+        }
+        .main-nav.open{ display:flex; }
+        .main-nav a{ padding:.7rem 0; width:100%; }
+        .header-cta{ margin:0.8rem 0 0; }
+        .nav-toggle{ display:flex; }
+        .hero{ padding:3.4rem 0 3.2rem; }
+        .hero-grid{ grid-template-columns:1fr; gap:1.4rem; align-items:start; }
+        .stats{ grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:2.8rem; }
+        .service{ grid-template-columns:1fr; padding:2.8rem 0; gap:2rem; }
+        .service.flip .svc-media{ order:0; } .service.flip .svc-text{ order:1; }
+        .svc-media{ aspect-ratio:16/10.5; }
+        .steps{ grid-template-columns:1fr; gap:2.2rem; }
+        .steps::before{ left:8px; right:auto; top:0; bottom:0; width:2px; height:auto; background:linear-gradient(180deg, var(--teal), rgba(2,192,167,.08)); }
+        .step{ padding-top:0; padding-left:2.4rem; }
+        .step::before{ top:6px; left:1px; }
+        .foot-grid{ grid-template-columns:1fr 1fr; }
+        .cta-chevrons{ opacity:.25; right:-90px; }
+      }
+      @media (max-width:560px){
+        .stats{ grid-template-columns:1fr 1fr; }
+        .stat:last-child{ grid-column:1 / -1; }
+        .foot-grid{ grid-template-columns:1fr; }
+        .brand small{ display:none; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+      <div class="wrap header-in">
+        <a class="brand" href="#" aria-label="Tensils Technology — home">
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="20" cy="20" r="17.5" stroke="#02C0A7" stroke-width="2.4"/>
+            <path d="M13 15.5 20 22l7-6.5" stroke="#F3F7FB" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 22.5 20 29l7-6.5" stroke="#02C0A7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>TENSILS<small>TECHNOLOGY</small></span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span></button>
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+          <a href="#">Home</a>
+          <a href="#" class="active" aria-current="page">Services</a>
+          <a href="#how-we-work">Process</a>
+          <a href="#contact">Contact</a>
+          <a class="header-cta" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%20need%20a%20quote%20for%20my%20project." target="_blank" rel="noopener">Request a quote</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================= FLOATING RAIL ================= -->
+    <div class="rail" aria-label="Quick contact links">
+      <a href="https://wa.me/923492836687" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4 0 .1 0 .7-.2 1.2Z"/></svg>
+      </a>
+      <a href="mailto:tensilstechnologies@gmail.com" aria-label="Email">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+      <a href="https://www.instagram.com/tensilstechnology/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61595170020943" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.5h-2.9C11.2 2.5 10 4.4 10 6.5v2H7.5V12H10v9.5h4V12h2.7l.4-3.5H14Z"/></svg>
+      </a>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <svg viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice" fill="none">
+          <g stroke="rgba(148,178,214,.10)" stroke-width="1">
+            <path d="M-40 470 420 210 760 330 1120 120 1500 260"/>
+            <path d="M-40 120 300 300 640 190 980 380 1500 180"/>
+            <path d="M180 -40 420 210 400 560"/>
+            <path d="M1080 -40 1120 120 1180 560"/>
+            <path d="M640 190 760 330 740 560"/>
+          </g>
+          <g fill="#02C0A7">
+            <circle cx="420" cy="210" r="4"/><circle cx="760" cy="330" r="3.4"/><circle cx="1120" cy="120" r="4"/>
+            <circle cx="300" cy="300" r="3"/><circle cx="640" cy="190" r="3"/><circle cx="980" cy="380" r="3.4"/>
+            <circle cx="180" cy="120" r="2.4" opacity=".7"/><circle cx="1300" cy="300" r="2.4" opacity=".7"/>
+          </g>
+          <g fill="none" stroke="rgba(2,192,167,.35)">
+            <circle cx="420" cy="210" r="11"/><circle cx="1120" cy="120" r="11"/><circle cx="760" cy="330" r="9"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-glow-2" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="#">HOME</a>
+          <span class="diamond" aria-hidden="true">◆</span>
+          <span class="current" aria-current="page">OUR SERVICES</span>
+        </nav>
+
+        <div class="hero-grid">
+          <h1>Systems your business<br /><span class="grad">runs on, every day.</span></h1>
+          <div class="hero-side">
+            <div class="mini-line" aria-hidden="true"></div>
+            <p>From your first website to the software that runs your whole operation — we design, build and support the digital systems behind growing businesses, all under one roof.</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="num">100<em>+</em></div>
+            <div class="lbl">Projects delivered</div>
+          </div>
+          <div class="stat">
+            <div class="num">7</div>
+            <div class="lbl">Services, one team</div>
+          </div>
+          <div class="stat">
+            <div class="num">24<em>/</em>7</div>
+            <div class="lbl">Support when you need it</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <main class="services">
+      <div class="wrap">
+
+        <!-- 1 · WordPress -->
+        <article class="service" id="wordpress">
+          <div class="svc-media rv">
+            <div class="glow glow-tr" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,196 268,140 160,86 52,140" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <polygon points="160,182 254,136 160,92 66,136" fill="none" stroke="rgba(2,192,167,.35)" stroke-dasharray="5 6"/>
+              <g>
+                <polygon points="96,120 96,58 200,26 200,88" fill="#12293F"/>
+                <polygon points="96,120 148,140 148,78 96,58" fill="#0C1D30"/>
+                <polygon points="96,58 148,38 200,26 148,46" fill="#1A3857"/>
+                <polygon points="148,140 200,88 200,26 148,46" fill="#0A1828"/>
+                <circle cx="110" cy="66" r="3.4" fill="#02C0A7"/><circle cx="122" cy="62" r="3.4" fill="#5B718C"/><circle cx="134" cy="58" r="3.4" fill="#5B718C"/>
+                <rect x="158" y="40" width="30" height="5" rx="2.5" fill="#2E8CFF" transform="skewY(-13)"/>
+                <path d="M112 96l14-4M112 108l22-6M112 84l30-8" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+                <path d="M160 66l26-8M160 78l18-5" stroke="#02C0A7" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <g>
+                <rect x="212" y="96" width="52" height="38" rx="6" fill="#0C1D30" stroke="#02C0A7" stroke-width="1.6"/>
+                <path d="M222 110h32M222 121h20" stroke="#94A3B8" stroke-width="3.4" stroke-linecap="round"/>
+                <circle cx="256" cy="88" r="9" fill="#02C0A7"/>
+                <path d="M252 88h8M256 84v8" stroke="#03211C" stroke-width="2.4" stroke-linecap="round"/>
+              </g>
+              <rect x="66" y="150" width="40" height="26" rx="5" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
+              <path d="M74 160h24M74 168h14" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">01 — WEBSITES</div>
+            <h2>WordPress</h2>
+            <p>Business websites, landing pages and content sites built on WordPress and Elementor — fast to launch, easy for you to edit, and structured so the page you approve is exactly the page that goes live.</p>
+            <ul class="tags">
+              <li>Elementor</li><li>WooCommerce</li><li>Custom Themes</li><li>Landing Pages</li><li>Speed Optimisation</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20WordPress%20website." target="_blank" rel="noopener">
+              Explore WordPress
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 2 · Shopify -->
+        <article class="service flip" id="shopify">
+          <div class="svc-media rv">
+            <div class="glow glow-bl" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,200 272,142 160,86 48,142" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <g>
+                <polygon points="104,128 104,66 216,66 216,128 160,152" fill="#0C1D30"/>
+                <polygon points="104,128 160,152 160,66 104,66" fill="#12293F"/>
+                <polygon points="88,66 232,66 216,44 104,44" fill="#1A3857"/>
+                <path d="M104 44l8 22M136 44l4 22M184 44l-4 22M216 44l-8 22" stroke="#02C0A7" stroke-width="3"/>
+                <rect x="140" y="104" width="40" height="34" rx="4" fill="#081222" stroke="#02C0A7" stroke-width="1.6"/>
+                <path d="M140 118h40" stroke="rgba(2,192,167,.5)"/>
+              </g>
+              <g>
+                <path d="M228 118l14-6 12 30-16 7z" fill="#12293F" stroke="#94A3B8" stroke-width="1.6"/>
+                <path d="M240 112a8 8 0 0 1 16 2" stroke="#02C0A7" stroke-width="3" fill="none"/>
+                <circle cx="252" cy="156" r="10" fill="#02C0A7"/>
+                <path d="M247 152l4 4 7-8" stroke="#03211C" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <g>
+                <rect x="58" y="150" width="46" height="30" rx="5" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
+                <path d="M66 161h30M66 170h18" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="98" cy="146" r="8" fill="#2E8CFF"/>
+                <path d="M94 146h8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">02 — ECOMMERCE</div>
+            <h2>Shopify</h2>
+            <p>Complete Shopify stores — theme setup and redesigns, product and collection structure, bundles, discount logic and checkout flows that stay compliant and keep selling while you sleep.</p>
+            <ul class="tags">
+              <li>Theme Setup</li><li>Store Redesign</li><li>Bundles &amp; Boxes</li><li>Apps &amp; Integrations</li><li>Checkout Flows</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20Shopify%20store." target="_blank" rel="noopener">
+              Explore Shopify
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 3 · Web Development -->
+        <article class="service" id="web-development">
+          <div class="svc-media rv">
+            <div class="glow glow-tr" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <g>
+                <polygon points="88,132 88,62 196,34 196,104" fill="#12293F"/>
+                <polygon points="88,132 140,152 140,82 88,62" fill="#0C1D30"/>
+                <polygon points="88,62 140,44 196,34 140,54" fill="#1A3857"/>
+                <circle cx="102" cy="70" r="3.2" fill="#02C0A7"/><circle cx="114" cy="66" r="3.2" fill="#5B718C"/>
+                <path d="M118 96l-12 8 12 8M138 92l-8 24" stroke="#02C0A7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M152 62l20-5M152 76l26-6M152 90l14-3" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <g>
+                <polygon points="206,120 206,78 262,62 262,104" fill="#0C1D30"/>
+                <polygon points="206,120 234,130 234,88 206,78" fill="#0A1828"/>
+                <polygon points="206,78 234,68 262,62 234,74" fill="#1A3857"/>
+                <path d="M216 92h16M216 103h24" stroke="#2E8CFF" stroke-width="3.6" stroke-linecap="round"/>
+              </g>
+              <path d="M196 84c16-2 22 6 24 16" stroke="#02C0A7" stroke-width="2" stroke-dasharray="4 5" fill="none"/>
+              <circle cx="222" cy="66" r="4" fill="#02C0A7"/>
+              <rect x="70" y="158" width="52" height="10" rx="5" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
+              <circle cx="82" cy="163" r="3" fill="#02C0A7"/><path d="M92 163h22" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">03 — CUSTOM BUILDS</div>
+            <h2>Web Development</h2>
+            <p>When a template is not enough: custom websites and web apps built with React and Node.js — portfolios, booking systems, client portals and tools shaped exactly around how your business works.</p>
+            <ul class="tags">
+              <li>React</li><li>Node.js</li><li>REST APIs</li><li>Booking Systems</li><li>Client Portals</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20custom%20web%20development." target="_blank" rel="noopener">
+              Explore Web Development
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 4 · SEO -->
+        <article class="service flip" id="seo">
+          <div class="svc-media rv">
+            <div class="glow glow-bl" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <g>
+                <polygon points="84,150 84,84 200,58 200,124" fill="#12293F"/>
+                <polygon points="84,150 132,166 132,100 84,84" fill="#0C1D30"/>
+                <polygon points="84,84 132,70 200,58 132,74" fill="#1A3857"/>
+                <path d="M100 128l22-8 16-14 26-10" stroke="#02C0A7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="100" cy="128" r="3.6" fill="#F3F7FB"/><circle cx="122" cy="120" r="3.6" fill="#F3F7FB"/><circle cx="138" cy="106" r="3.6" fill="#F3F7FB"/><circle cx="164" cy="96" r="4" fill="#02C0A7"/>
+                <path d="M100 138v-4M122 132v-6M146 116v-6" stroke="rgba(148,178,214,.4)" stroke-width="3"/>
+              </g>
+              <g>
+                <circle cx="222" cy="92" r="30" fill="rgba(2,192,167,.08)" stroke="#02C0A7" stroke-width="3"/>
+                <path d="M243 113l26 26" stroke="#02C0A7" stroke-width="6" stroke-linecap="round"/>
+                <path d="M208 92l10-8 8 5 12-11" stroke="#F3F7FB" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M232 76l7-1-1 7" stroke="#F3F7FB" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <g>
+                <rect x="196" y="150" width="66" height="26" rx="13" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
+                <path d="M208 163h30" stroke="#5B718C" stroke-width="3.4" stroke-linecap="round"/>
+                <circle cx="250" cy="163" r="5" fill="#2E8CFF"/>
+              </g>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">04 — GROWTH</div>
+            <h2>SEO</h2>
+            <p>Search visibility that compounds: technical fixes, page structure, metadata and content foundations so the right customers find you on Google — and keep finding you month after month.</p>
+            <ul class="tags">
+              <li>Technical SEO</li><li>On-Page SEO</li><li>Local SEO</li><li>Keyword Research</li><li>Site Audits</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20SEO%20for%20my%20website." target="_blank" rel="noopener">
+              Explore SEO
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 5 · ERP -->
+        <article class="service" id="erp">
+          <div class="svc-media rv">
+            <div class="glow glow-tr" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,204 276,146 160,90 44,146" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <g stroke="rgba(2,192,167,.45)" stroke-width="1.6">
+                <path d="M160 108v-24M160 108l-52 22M160 108l52 22M160 108v34"/>
+              </g>
+              <g>
+                <polygon points="160,84 184,98 160,112 136,98" fill="#02C0A7"/>
+                <polygon points="136,98 160,112 160,128 136,114" fill="#079B85"/>
+                <polygon points="160,112 184,98 184,114 160,128" fill="#0BB39B"/>
+              </g>
+              <g>
+                <polygon points="88,124 112,136 88,148 64,136" fill="#1A3857" stroke="rgba(148,178,214,.4)"/>
+                <polygon points="64,136 88,148 88,162 64,150" fill="#0C1D30"/>
+                <polygon points="88,148 112,136 112,150 88,162" fill="#12293F"/>
+              </g>
+              <g>
+                <polygon points="232,124 256,136 232,148 208,136" fill="#1A3857" stroke="rgba(148,178,214,.4)"/>
+                <polygon points="208,136 232,148 232,162 208,150" fill="#0C1D30"/>
+                <polygon points="232,148 256,136 256,150 232,162" fill="#12293F"/>
+              </g>
+              <g>
+                <polygon points="160,142 184,154 160,166 136,154" fill="#1A3857" stroke="rgba(148,178,214,.4)"/>
+                <polygon points="136,154 160,166 160,180 136,168" fill="#0C1D30"/>
+                <polygon points="160,166 184,154 184,168 160,180" fill="#12293F"/>
+              </g>
+              <circle cx="160" cy="60" r="4" fill="#02C0A7"/>
+              <circle cx="66" cy="104" r="3.4" fill="#2E8CFF"/>
+              <circle cx="254" cy="104" r="3.4" fill="#2E8CFF"/>
+              <path d="M160 64v16M70 108l14 12M250 108l-14 12" stroke="rgba(148,178,214,.35)" stroke-width="1.6" stroke-dasharray="3 5"/>
+              <g>
+                <rect x="118" y="186" width="84" height="12" rx="6" fill="#0C1D30" stroke="rgba(148,178,214,.35)"/>
+                <rect x="122" y="190" width="46" height="4" rx="2" fill="#02C0A7"/>
+              </g>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">05 — OPERATIONS</div>
+            <h2>ERP</h2>
+            <p>One system for the whole business: TensilsOS brings HR, CRM, projects, tasks, attendance and analytics into a single platform with role-based access — so every team works from the same numbers.</p>
+            <ul class="tags">
+              <li>TensilsOS</li><li>HR &amp; Payroll</li><li>CRM</li><li>Role-Based Access</li><li>Analytics</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20an%20ERP%20system%20for%20my%20business." target="_blank" rel="noopener">
+              Explore ERP
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 6 · Business Dashboard -->
+        <article class="service flip" id="business-dashboard">
+          <div class="svc-media rv">
+            <div class="glow glow-bl" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <g>
+                <polygon points="80,146 80,72 208,50 208,124" fill="#12293F"/>
+                <polygon points="80,146 128,162 128,88 80,72" fill="#0C1D30"/>
+                <polygon points="80,72 128,58 208,50 128,66" fill="#1A3857"/>
+                <path d="M94 128v-16M106 124V100M118 120V92" stroke="#02C0A7" stroke-width="5" stroke-linecap="round"/>
+                <path d="M146 96l16-8 14-4 18-10" stroke="#F3F7FB" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="194" cy="74" r="3.6" fill="#02C0A7"/>
+                <path d="M146 108h44" stroke="rgba(148,178,214,.4)" stroke-width="3.4" stroke-linecap="round"/>
+              </g>
+              <g>
+                <rect x="216" y="86" width="52" height="52" rx="8" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
+                <path d="M228 122a15 15 0 0 1 28-6" stroke="#02C0A7" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <path d="M242 122l8-12" stroke="#F3F7FB" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="242" cy="122" r="3" fill="#F3F7FB"/>
+              </g>
+              <g>
+                <rect x="196" y="152" width="70" height="24" rx="6" fill="#0C1D30" stroke="rgba(148,178,214,.4)"/>
+                <circle cx="210" cy="164" r="4" fill="#02C0A7"/>
+                <path d="M220 160h36M220 169h24" stroke="#5B718C" stroke-width="3" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">06 — INSIGHT</div>
+            <h2>Business Dashboard</h2>
+            <p>Custom dashboards that turn scattered data into one clear view — sales, orders, stock and team performance in real time, so decisions take minutes instead of end-of-month spreadsheets.</p>
+            <ul class="tags">
+              <li>Custom Dashboards</li><li>Real-Time Reports</li><li>Sales &amp; Stock Views</li><li>Data Visualisation</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20business%20dashboard." target="_blank" rel="noopener">
+              Explore Business Dashboard
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 7 · Management Systems -->
+        <article class="service" id="management-systems">
+          <div class="svc-media rv">
+            <div class="glow glow-tr" aria-hidden="true"></div>
+            <svg class="illus" viewBox="0 0 320 240" fill="none" aria-hidden="true">
+              <polygon points="160,202 274,144 160,88 46,144" fill="#0E2138" stroke="rgba(148,178,214,.25)"/>
+              <g>
+                <rect x="76" y="58" width="46" height="104" rx="7" fill="#0C1D30" stroke="rgba(148,178,214,.35)"/>
+                <path d="M86 74h26M86 88h26" stroke="#5B718C" stroke-width="3.4" stroke-linecap="round"/>
+                <rect x="86" y="100" width="26" height="18" rx="3" fill="#12293F" stroke="rgba(2,192,167,.55)"/>
+                <rect x="86" y="126" width="26" height="18" rx="3" fill="#12293F"/>
+              </g>
+              <g>
+                <rect x="137" y="58" width="46" height="104" rx="7" fill="#0C1D30" stroke="#02C0A7" stroke-width="1.6"/>
+                <path d="M147 74h26M147 88h26" stroke="#94A3B8" stroke-width="3.4" stroke-linecap="round"/>
+                <rect x="147" y="100" width="26" height="18" rx="3" fill="#02C0A7" opacity=".85"/>
+                <rect x="147" y="126" width="26" height="18" rx="3" fill="#12293F" stroke="rgba(2,192,167,.55)"/>
+                <path d="M152 109l4 4 6-7" stroke="#03211C" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <g>
+                <rect x="198" y="58" width="46" height="104" rx="7" fill="#0C1D30" stroke="rgba(148,178,214,.35)"/>
+                <path d="M208 74h26M208 88h18" stroke="#5B718C" stroke-width="3.4" stroke-linecap="round"/>
+                <rect x="208" y="100" width="26" height="18" rx="3" fill="#12293F"/>
+                <rect x="208" y="126" width="26" height="18" rx="3" fill="#12293F"/>
+              </g>
+              <path d="M122 84h15M183 84h15" stroke="#02C0A7" stroke-width="2" stroke-dasharray="3 4"/>
+              <g>
+                <circle cx="160" cy="186" r="11" fill="#02C0A7"/>
+                <path d="M154 186l4 4 8-9" stroke="#03211C" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M122 176l24 6M198 176l-24 6" stroke="rgba(148,178,214,.35)" stroke-width="1.6" stroke-dasharray="3 5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="svc-text rv">
+            <div class="svc-index">07 — SYSTEMS</div>
+            <h2>Management Systems</h2>
+            <p>Purpose-built systems for the way you already work — POS for retail and restaurants, appointment booking, school, clinic and property management — replacing registers, notebooks and scattered chats.</p>
+            <ul class="tags">
+              <li>POS Systems</li><li>Restaurant RMS</li><li>Booking Systems</li><li>School &amp; Clinic</li><li>Property CRM</li>
+            </ul>
+            <a class="explore" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27m%20interested%20in%20a%20management%20system." target="_blank" rel="noopener">
+              Explore Management Systems
+              <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <!-- ================= HOW WE WORK ================= -->
+    <section class="how" id="how-we-work">
+      <div class="wrap">
+        <div class="rv">
+          <div class="eyebrow">HOW WE WORK</div>
+          <h2>One process, from first call to everyday support.</h2>
+          <p class="how-sub">Every project — a five-page website or a full ERP — moves through the same three stages, so you always know what is happening and what comes next.</p>
+        </div>
+        <div class="steps">
+          <div class="step rv">
+            <div class="step-no">STEP 01</div>
+            <h3>Kick-off</h3>
+            <ul>
+              <li>Discovery call to understand your business and goals</li>
+              <li>Scope, pages and features agreed in writing</li>
+              <li>Fixed quote and timeline before any work starts</li>
+              <li>Content and access checklist shared with you</li>
+            </ul>
+          </div>
+          <div class="step rv">
+            <div class="step-no">STEP 02</div>
+            <h3>Build</h3>
+            <ul>
+              <li>Design and build on a staging link you can follow live</li>
+              <li>Your feedback rounds folded in as we go</li>
+              <li>Tested on mobile, tablet and desktop before launch</li>
+              <li>Go-live handled by us — domain, hosting and checks</li>
+            </ul>
+          </div>
+          <div class="step rv">
+            <div class="step-no">STEP 03</div>
+            <h3>Support</h3>
+            <ul>
+              <li>Handover walkthrough so your team can run it daily</li>
+              <li>Updates, backups and small fixes after launch</li>
+              <li>One WhatsApp message away when something breaks</li>
+              <li>Room to grow — new features added as you scale</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="cta-section" id="contact">
+      <div class="wrap">
+        <div class="cta rv">
+          <svg class="cta-chevrons" width="430" height="430" viewBox="0 0 430 430" fill="none" aria-hidden="true">
+            <path d="M120 90 260 215 120 340" stroke="rgba(255,255,255,.16)" stroke-width="46" stroke-linecap="square"/>
+            <path d="M225 90 365 215 225 340" stroke="rgba(255,255,255,.22)" stroke-width="46" stroke-linecap="square"/>
+            <path d="M120 150 215 215 120 280" stroke="rgba(2,240,205,.35)" stroke-width="30" stroke-linecap="square"/>
+          </svg>
+          <div class="cta-in">
+            <div class="eyebrow">LET'S TALK</div>
+            <h2>Let's build your system.</h2>
+            <p>Tell us what you're running today — a shop, a team, a whole operation — and we'll map the website or system that takes it further. First conversation is free, no obligation.</p>
+            <div class="cta-btns">
+              <a class="btn btn-white" href="https://wa.me/923492836687?text=Hi%20Tensils%2C%20I%27d%20like%20a%20quote%20for%20my%20project." target="_blank" rel="noopener">Request a quote</a>
+              <a class="btn btn-dark" href="mailto:tensilstechnologies@gmail.com?subject=Meeting%20request%20—%20Tensils%20Technology">Book a meeting</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="foot-brand">
+            <a class="brand" href="#" aria-label="Tensils Technology — home">
+              <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                <circle cx="20" cy="20" r="17.5" stroke="#02C0A7" stroke-width="2.4"/>
+                <path d="M13 15.5 20 22l7-6.5" stroke="#F3F7FB" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M13 22.5 20 29l7-6.5" stroke="#02C0A7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>TENSILS<small>TECHNOLOGY</small></span>
+            </a>
+            <p>Websites, stores and software systems for businesses that want their operations to run themselves — designed, built and supported by one team.</p>
+          </div>
+          <div>
+            <h4>Services</h4>
+            <nav class="foot-links" aria-label="Services">
+              <a href="#wordpress">WordPress</a>
+              <a href="#shopify">Shopify</a>
+              <a href="#web-development">Web Development</a>
+              <a href="#seo">SEO</a>
+              <a href="#erp">ERP</a>
+              <a href="#business-dashboard">Business Dashboard</a>
+              <a href="#management-systems">Management Systems</a>
+            </nav>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <nav class="foot-links" aria-label="Company">
+              <a href="#">Home</a>
+              <a href="#how-we-work">How We Work</a>
+              <a href="#contact">Contact</a>
+              <a href="https://wa.me/923492836687" target="_blank" rel="noopener">Request a Quote</a>
+            </nav>
+          </div>
+          <div>
+            <h4>Get in touch</h4>
+            <div class="foot-contact">
+              <div><span class="k">WHATSAPP</span><a href="https://wa.me/923492836687" target="_blank" rel="noopener">+92 349 2836687</a></div>
+              <div><span class="k">EMAIL</span><a href="mailto:tensilstechnologies@gmail.com">tensilstechnologies@gmail.com</a></div>
+              <div><span class="k">HEAD OFFICE</span>Sahiwal, Pakistan</div>
+            </div>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 Tensils Technology. All rights reserved.</span>
+          <span>Websites • Stores • ERP • Dashboards • Management Systems</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile nav
+      var toggle = document.getElementById('navToggle');
+      var nav = document.getElementById('mainNav');
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Scroll reveal: flat mid-grey -> full colour as blocks enter the viewport
+      var revealEls = document.querySelectorAll('.rv');
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+        revealEls.forEach(function (el) { io.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('in'); });
+      }
+    </script>
+  </body>
+</html>
