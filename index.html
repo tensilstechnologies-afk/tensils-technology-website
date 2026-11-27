@@ -115,13 +115,14 @@ body.hero-in .hwi{transform:none}
 .chip{opacity:0;transition:opacity .8s ease var(--d,0s)}
 body.hero-in .chip{opacity:1}
 /* ---------- SCROLL INTRO ---------- */
-#intro{position:relative;height:340vh;background:radial-gradient(900px 600px at 50% 45%,rgba(2,192,167,.10),transparent 65%),var(--bg)}
+#intro{position:relative;height:676vh;background:radial-gradient(900px 600px at 50% 45%,rgba(2,192,167,.10),transparent 65%),var(--bg)}
 .intro-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .intro-stars{position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 22%,rgba(255,255,255,.7) 50%,transparent 51%),radial-gradient(1px 1px at 28% 68%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 44% 14%,rgba(255,255,255,.6) 50%,transparent 51%),radial-gradient(1px 1px at 63% 82%,rgba(255,255,255,.55) 50%,transparent 51%),radial-gradient(2px 2px at 76% 30%,rgba(255,255,255,.65) 50%,transparent 51%),radial-gradient(1px 1px at 88% 60%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 52% 48%,rgba(2,192,167,.8) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 8% 84%,rgba(255,255,255,.45) 50%,transparent 51%),radial-gradient(1px 1px at 94% 12%,rgba(255,255,255,.6) 50%,transparent 51%)}
 .intro-phase{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;will-change:transform}
 .intro-phase.on{display:flex;animation:phaseIn .55s ease both}
 @keyframes phaseIn{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:blur(0)}}
 .intro-phase .big{font-family:'Sora';font-weight:800;font-size:clamp(64px,13vw,168px);color:var(--teal);line-height:1;letter-spacing:-.03em}
+.intro-phase .big.long{font-size:clamp(42px,8.5vw,128px);line-height:1.05}
 .intro-phase h2{font-size:clamp(34px,5vw,58px);max-width:640px}
 .intro-phase p{color:var(--muted);font-size:17.5px;max-width:520px;margin:18px 0 28px}
 .intro-phase .eyebrow{margin-bottom:16px}
@@ -383,15 +384,22 @@ footer p{color:var(--muted);font-size:14.5px}
       <p>Website, customers, operations and sales — planned together from day one, so nothing has to be bolted on later.</p>
       <a class="btn btn-ghost" href="#services">Explore our services <span class="arr">→</span></a>
     </div>
-    <div class="intro-phase" data-phase><div class="big">Design.</div></div>
-    <div class="intro-phase" data-phase><div class="big">Build.</div></div>
-    <div class="intro-phase" data-phase><div class="big">Scale.</div></div>
+    <div class="intro-phase" data-phase><div class="big">WordPress</div></div>
+    <div class="intro-phase" data-phase><div class="big">Shopify</div></div>
+    <div class="intro-phase" data-phase><div class="big long">Web Development</div></div>
+    <div class="intro-phase" data-phase><div class="big">SEO</div></div>
+    <div class="intro-phase" data-phase><div class="big">Dashboard</div></div>
+    <div class="intro-phase" data-phase><div class="big long">Web Dashboards</div></div>
+    <div class="intro-phase" data-phase><div class="big long">Customized Dashboard</div></div>
+    <div class="intro-phase" data-phase><div class="big">ERP</div></div>
+    <div class="intro-phase" data-phase><div class="big long">Management Systems</div></div>
+    <div class="intro-phase" data-phase><div class="big">SEO</div></div>
     <div class="intro-phase" data-phase>
       <h2>From idea to launch,<br><span style="color:var(--teal)">without the chaos.</span></h2>
       <p>Fixed scope, weekly previews and a team that stays after launch.</p>
       <a class="btn btn-white" href="#contact">Start your project <span class="arr">→</span></a>
     </div>
-    <div class="intro-prog" id="introProg"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="intro-prog" id="introProg"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <button class="skip-intro" id="skipIntro">Skip intro <span class="arr">↓</span></button>
   </div>
 </div>
