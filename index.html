@@ -1,12 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="light dark" />
 <link rel="icon" href="data:," />
 <title>Tensils Technology — Websites, CRM, ERP & POS Systems</title>
 <meta name="description" content="Tensils Technology builds websites, CRM, ERP, dashboards and POS & management systems that run your business. 100+ projects delivered." />
+<script>
+  /* Apply the saved theme before first paint — no flash.
+     Key "tensils-theme" is shared with the services and contact pages. */
+  (function () {
+    var t = "dark";
+    try {
+      var saved = window.localStorage.getItem("tensils-theme");
+      if (saved === "light" || saved === "dark") t = saved;
+    } catch (e) {}
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,9 +29,14 @@
   --teal:#02C0A7; --teal-d:#02A891; --line:rgba(157,176,198,.16);
   --radius:20px; --shadow:0 30px 70px rgba(0,0,0,.5);
 }
+[data-theme="light"]{
+  --bg:#F4F7F9; --bg2:#EEF3F6; --panel:#FFFFFF; --panel2:#FFFFFF;
+  --ink:#0A1728; --muted:#43566B; --muted2:#64788C;
+  --line:#DDE7EE; --shadow:0 24px 50px rgba(10,30,50,.12);
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;transition:background-color .35s ease,color .35s ease}
 h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.08;margin:0;letter-spacing:-.02em}
 a{color:inherit}
 button,[role="button"],select,input,textarea{font-family:'Inter',sans-serif}
@@ -80,6 +97,13 @@ nav.main a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
 .icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:.25s;text-decoration:none}
 .icon-btn:hover{border-color:var(--teal);color:var(--teal)}
 .icon-btn svg{width:19px;height:19px}
+.theme-toggle{width:40px;height:40px;border-radius:50%;border:none;display:inline-flex;align-items:center;justify-content:center;background:var(--teal);color:#fff;cursor:pointer;flex:none;transition:background-color .3s ease,transform .2s ease}
+.theme-toggle:hover{transform:scale(1.06)}
+.theme-toggle svg{width:20px;height:20px}
+[data-theme="light"] .theme-toggle{background:#0a1728}
+.theme-toggle .icon-moon{display:none}
+[data-theme="light"] .theme-toggle .icon-sun{display:none}
+[data-theme="light"] .theme-toggle .icon-moon{display:block}
 .btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:15px;border-radius:999px;padding:9px 10px 9px 22px;transition:.3s;cursor:pointer;border:0}
 .btn .arr{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none;transition:transform .3s}
 .btn:hover .arr{transform:translateX(3px)}
@@ -323,6 +347,30 @@ footer p{color:var(--muted);font-size:14.5px}
 #toTop.show{display:grid}
 #toTop:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:620px){.rail{right:12px;bottom:88px}.rail a{width:46px;height:46px}.rail svg{width:22px;height:22px}#toTop{right:12px;width:48px;height:48px}.logo .mark{margin-left:3px}.hero{padding-top:132px}.hero-ctas{margin-bottom:64px}}
+/* ---------- LIGHT THEME OVERRIDES ---------- */
+/* Header stays dark in both modes: pin its dark palette locally so the
+   logo, nav and buttons keep their dark-mode colours on the light page. */
+[data-theme="light"] header{background:rgba(5,11,22,.94);border-bottom-color:rgba(148,178,205,.14);--ink:#EDF3FA;--muted:#9DB0C6;--line:rgba(157,176,198,.22);--panel:#0A1626;--panel2:#0D1B31;--shadow:0 30px 70px rgba(0,0,0,.5)}
+[data-theme="light"] .chip{color:#EDF3FA}
+[data-theme="light"] .skip-intro{color:#EDF3FA}
+[data-theme="light"] .intro-prog i{background:rgba(10,23,40,.18)}
+[data-theme="light"] .intro-prog i.on{background:var(--teal)}
+[data-theme="light"] .btn-ghost{background:rgba(10,23,40,.04)}
+/* Marquee chips stay dark, as on the dark page */
+[data-theme="light"] .mq-item{background:#0A1626}
+/* Service carousel cards go white with a soft shadow */
+[data-theme="light"] .r-card{background:linear-gradient(165deg,#FFFFFF 0%,#FFFFFF 45%,#F4F7F9 100%);box-shadow:0 24px 50px rgba(10,30,50,.10)}
+[data-theme="light"] .r-card.is-front{box-shadow:0 34px 64px rgba(10,30,50,.16)}
+[data-theme="light"] .r-pills span{color:#22344A;border-color:#C9D8E2;background:#F4F7F9}
+[data-theme="light"] .r-top .svc-eyebrow{color:#64788C}
+[data-theme="light"] .chips span{color:#02796A}
+/* Newsletter band and globe panel stay dark: pin their dark palette */
+[data-theme="light"] .news-band{--ink:#EDF3FA;--muted:#9DB0C6}
+[data-theme="light"] .globe-panel{--ink:#EDF3FA;--muted:#9DB0C6;--muted2:#6E8299;--line:rgba(157,176,198,.16)}
+/* Footer: white with dark text and teal headings */
+[data-theme="light"] footer{background:#FFFFFF}
+[data-theme="light"] footer h4{color:var(--teal)}
+[data-theme="light"] .foot-big{color:rgba(10,23,40,.05)}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
   .reveal{opacity:1;transform:none}
@@ -371,6 +419,15 @@ footer p{color:var(--muted);font-size:14.5px}
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
       <a class="btn btn-teal" href="#contact">Request a quote <span class="arr">→</span></a>
       <button class="burger" id="burger" aria-label="Open menu">☰</button>
     </div>
@@ -659,6 +716,23 @@ window.addEventListener('scroll',function(){
 },{passive:true});
 toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
 document.getElementById('burger').addEventListener('click',function(){document.getElementById('mainNav').classList.toggle('open')});
+/* ============ THEME TOGGLE ============ */
+(function(){
+  var toggle=document.getElementById('themeToggle');
+  function syncToggleLabel(){
+    var isLight=document.documentElement.getAttribute('data-theme')==='light';
+    var label=isLight?'Switch to dark mode':'Switch to light mode';
+    toggle.setAttribute('aria-label',label);
+    toggle.setAttribute('title',label);
+  }
+  syncToggleLabel();
+  toggle.addEventListener('click',function(){
+    var next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',next);
+    try{ window.localStorage.setItem('tensils-theme',next); }catch(e){}
+    syncToggleLabel();
+  });
+})();
 document.querySelectorAll('#mainNav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mainNav').classList.remove('open')})});
 /* ============ CONSTELLATION CANVAS ============ */
 (function(){

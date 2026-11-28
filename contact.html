@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Contact Us — Tensils Technology</title>
+    <meta name="description" content="Contact Tensils Technology — websites, CRM, ERP, dashboards and management systems. Based in Sahiwal, Pakistan. We reply within one business day." />
+    <script>
+      /* Apply the saved theme before first paint — no flash.
+         Key "tensils-theme" is shared with the home and services pages. */
+      (function () {
+        var t = "dark";
+        try {
+          var saved = window.localStorage.getItem("tensils-theme");
+          if (saved === "light" || saved === "dark") t = saved;
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --teal: #02c0a7;
+        --teal-dark: #019e88;
+        --bg: #050b16;
+        --bg-soft: #081120;
+        --surface: #0a1626;
+        --surface-2: #0d1b30;
+        --border: rgba(148, 178, 205, 0.16);
+        --border-strong: rgba(148, 178, 205, 0.28);
+        --heading: #ffffff;
+        --body: #9db1c6;
+        --body-strong: #c8d6e4;
+        --input-bg: #0a1729;
+        --input-border: rgba(148, 178, 205, 0.3);
+        --card-shadow: none;
+        --glow: rgba(2, 192, 167, 0.16);
+        --footer-bg: #040912;
+        --footer-border: rgba(148, 178, 205, 0.12);
+        --header-bg: rgba(5, 11, 22, 0.92);
+      }
+      [data-theme="light"] {
+        --bg: #f4f7f9;
+        --bg-soft: #eef3f6;
+        --surface: #ffffff;
+        --surface-2: #ffffff;
+        --border: #dde7ee;
+        --border-strong: #c9d8e2;
+        --heading: #0a1728;
+        --body: #43566b;
+        --body-strong: #22344a;
+        --input-bg: #ffffff;
+        --input-border: #c4d3de;
+        --card-shadow: 0 10px 30px rgba(10, 30, 50, 0.07);
+        --glow: rgba(2, 192, 167, 0.13);
+        --footer-bg: #ffffff;
+        --footer-border: #dde7ee;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--body);
+        font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.35s ease, color 0.35s ease;
+      }
+      h1, h2, h3, .logo-text, .card-value, .step-title {
+        font-family: "Sora", "Manrope", system-ui, sans-serif;
+        color: var(--heading);
+      }
+      a { color: inherit; }
+      img, svg { display: block; }
+      button { font-family: inherit; cursor: pointer; }
+      :focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+      /* ---------- Header (stays dark in both modes) ---------- */
+      .site-header {
+        position: sticky; top: 0; z-index: 60;
+        background: var(--header-bg);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(148, 178, 205, 0.14);
+      }
+      .header-in {
+        display: flex; align-items: center; gap: 28px;
+        min-height: 72px;
+      }
+      .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; flex: none; }
+      .logo-mark { width: 38px; height: 38px; flex: none; }
+      .logo-text { color: #fff; font-weight: 800; font-size: 17px; letter-spacing: 0.14em; line-height: 1.05; }
+      .logo-text small { display: block; font-size: 9.5px; letter-spacing: 0.34em; color: var(--teal); font-weight: 700; }
+      .main-nav { display: flex; gap: 6px; margin-left: auto; }
+      .main-nav a {
+        position: relative;
+        color: #b9c9da; text-decoration: none; font-weight: 600; font-size: 15px;
+        padding: 10px 14px; min-height: 44px; display: inline-flex; align-items: center;
+        border-radius: 8px;
+      }
+      .main-nav a:hover { color: #fff; }
+      .main-nav a.active { color: #fff; }
+      .main-nav a.active::after {
+        content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px;
+        height: 2px; border-radius: 2px; background: var(--teal);
+      }
+      .header-actions { display: flex; align-items: center; gap: 12px; flex: none; }
+      .theme-toggle {
+        width: 40px; height: 40px; border-radius: 50%; border: none;
+        display: inline-flex; align-items: center; justify-content: center;
+        background: var(--teal); color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .theme-toggle:hover { transform: scale(1.06); }
+      .theme-toggle svg { width: 20px; height: 20px; }
+      [data-theme="light"] .theme-toggle { background: #0a1728; }
+      .theme-toggle .icon-moon { display: none; }
+      [data-theme="light"] .theme-toggle .icon-sun { display: none; }
+      [data-theme="light"] .theme-toggle .icon-moon { display: block; }
+      .btn-quote {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--teal); color: #04241f; text-decoration: none;
+        font-weight: 800; font-size: 14.5px; padding: 11px 20px; min-height: 44px;
+        border-radius: 999px; white-space: nowrap;
+        transition: background-color 0.2s ease;
+      }
+      .btn-quote:hover { background: #25d3bd; }
+      .menu-btn {
+        display: none; width: 44px; height: 44px; border-radius: 10px;
+        background: transparent; border: 1px solid rgba(148,178,205,.3);
+        color: #fff; align-items: center; justify-content: center;
+      }
+      .menu-btn svg { width: 22px; height: 22px; }
+
+      /* ---------- Hero ---------- */
+      .hero { position: relative; overflow: hidden; padding: 72px 0 56px; }
+      .hero::before {
+        content: ""; position: absolute; top: -220px; right: -140px;
+        width: 620px; height: 620px; border-radius: 50%;
+        background: radial-gradient(circle, var(--glow) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .breadcrumb {
+        display: flex; align-items: center; gap: 10px;
+        font-size: 12.5px; font-weight: 700; letter-spacing: 0.18em;
+        text-transform: uppercase; margin-bottom: 30px; position: relative;
+      }
+      .breadcrumb a { color: var(--body); text-decoration: none; padding: 6px 0; }
+      .breadcrumb a:hover { color: var(--teal); }
+      .breadcrumb .sep { color: var(--body); opacity: 0.55; }
+      .breadcrumb .current { color: var(--teal); }
+      .eyebrow {
+        color: var(--teal); font-size: 13px; font-weight: 800;
+        letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 18px;
+        display: flex; align-items: center; gap: 12px;
+      }
+      .eyebrow::before { content: ""; width: 34px; height: 2px; background: var(--teal); border-radius: 2px; }
+      .hero h1 {
+        font-size: clamp(42px, 6.4vw, 76px); line-height: 1.04; font-weight: 800;
+        margin: 0 0 22px; letter-spacing: -0.01em; position: relative;
+      }
+      .hero h1 .line2 { color: var(--teal); }
+      .hero p.lede { font-size: 18px; max-width: 620px; margin: 0; position: relative; }
+
+      /* ---------- Contact action cards ---------- */
+      .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding-bottom: 84px; }
+      .action-card {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+        padding: 26px 24px; text-decoration: none; display: flex; flex-direction: column;
+        box-shadow: var(--card-shadow);
+        transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.35s ease;
+      }
+      .action-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+      .action-card .icon {
+        width: 46px; height: 46px; border-radius: 12px; margin-bottom: 20px;
+        background: rgba(2, 192, 167, 0.12); color: var(--teal);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .action-card .icon svg { width: 22px; height: 22px; }
+      .action-card .card-label {
+        color: var(--teal); font-size: 11.5px; font-weight: 800;
+        letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 8px;
+      }
+      .card-value { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 10px; overflow-wrap: anywhere; }
+      .card-value.small { font-size: 13.5px; letter-spacing: -0.02em; white-space: nowrap; }
+      .card-action { margin-top: auto; font-size: 14.5px; font-weight: 600; color: var(--body); display: inline-flex; align-items: center; gap: 7px; }
+      .action-card:hover .card-action { color: var(--teal); }
+      .card-action svg { width: 15px; height: 15px; }
+
+      /* ---------- What happens next ---------- */
+      .next { padding: 0 0 92px; }
+      .next-head { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: end; margin-bottom: 58px; }
+      .next-head h2 { font-size: clamp(32px, 4.2vw, 48px); line-height: 1.12; margin: 0; font-weight: 800; }
+      .next-head p { margin: 0; font-size: 16.5px; }
+      .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+      .steps::before {
+        content: ""; position: absolute; top: 9px; left: 4%; right: 4%; height: 2px;
+        background: linear-gradient(90deg, rgba(2,192,167,.15), var(--teal), rgba(2,192,167,.15));
+      }
+      .step { position: relative; padding-top: 0; }
+      .step .node {
+        width: 20px; height: 20px; border-radius: 50%; background: var(--teal);
+        border: 4px solid var(--bg); position: relative; z-index: 1; margin-bottom: 22px;
+        box-shadow: 0 0 0 2px var(--teal), 0 0 18px rgba(2, 192, 167, 0.65);
+      }
+      .step .when {
+        color: var(--teal); font-size: 12px; font-weight: 800;
+        letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px;
+      }
+      .step-title { font-size: 19px; font-weight: 700; margin: 0 0 8px; }
+      .step p { margin: 0; font-size: 15px; }
+
+      /* ---------- Form + office ---------- */
+      .contact-grid { display: grid; grid-template-columns: 45fr 55fr; gap: 26px; padding-bottom: 96px; align-items: start; }
+      .form-card {
+        background: var(--surface-2); border: 1px solid rgba(2, 192, 167, 0.45);
+        border-radius: 22px; padding: 34px 32px; box-shadow: var(--card-shadow);
+      }
+      [data-theme="light"] .form-card { border-color: rgba(2, 192, 167, 0.55); }
+      .form-card h2 { font-size: 27px; margin: 0 0 8px; font-weight: 800; }
+      .form-card .form-sub { margin: 0 0 26px; font-size: 15px; }
+      .field { margin-bottom: 18px; }
+      .field label { display: block; font-weight: 700; font-size: 14.5px; color: var(--body-strong); margin-bottom: 8px; }
+      .field label .req { color: var(--teal); }
+      .field input[type="text"], .field input[type="email"], .field textarea {
+        width: 100%; background: var(--input-bg); color: var(--heading);
+        border: 1px solid var(--input-border); border-radius: 12px;
+        padding: 13px 15px; font: inherit; font-size: 15.5px; min-height: 48px;
+      }
+      .field textarea { min-height: 132px; resize: vertical; }
+      .field input::placeholder, .field textarea::placeholder { color: var(--body); opacity: 0.75; }
+      .field input:focus, .field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(2,192,167,.18); }
+
+      .phone-row { display: flex; gap: 10px; }
+      .phone-row input { flex: 1; min-width: 0; }
+      .cc-picker { position: relative; flex: none; }
+      .cc-btn {
+        display: inline-flex; align-items: center; gap: 8px; height: 100%; min-height: 48px;
+        background: var(--input-bg); color: var(--heading);
+        border: 1px solid var(--input-border); border-radius: 12px;
+        padding: 10px 13px; font: inherit; font-size: 15px; font-weight: 700; white-space: nowrap;
+      }
+      .cc-btn svg { width: 15px; height: 15px; color: var(--body); }
+      .cc-panel {
+        position: absolute; top: calc(100% + 8px); left: 0; width: 300px; max-width: 82vw;
+        background: var(--surface); border: 1px solid var(--border-strong); border-radius: 14px;
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45); z-index: 40; overflow: hidden;
+      }
+      [data-theme="light"] .cc-panel { box-shadow: 0 24px 50px rgba(10, 30, 50, 0.18); }
+      .cc-panel[hidden] { display: none; }
+      .cc-search { padding: 10px; border-bottom: 1px solid var(--border); }
+      .cc-search input {
+        width: 100%; background: var(--input-bg); color: var(--heading);
+        border: 1px solid var(--input-border); border-radius: 9px;
+        padding: 9px 12px; font: inherit; font-size: 14.5px; min-height: 40px;
+      }
+      .cc-list { max-height: 264px; overflow-y: auto; padding: 6px; }
+      .cc-group-label { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); padding: 8px 10px 4px; }
+      .cc-item {
+        display: flex; justify-content: space-between; align-items: center; gap: 12px;
+        width: 100%; text-align: left; background: none; border: none; border-radius: 8px;
+        padding: 9px 10px; min-height: 40px; font: inherit; font-size: 14.5px; color: var(--body-strong);
+      }
+      .cc-item:hover, .cc-item.selected { background: rgba(2, 192, 167, 0.12); }
+      .cc-item .cc-code { color: var(--teal); font-weight: 700; flex: none; }
+      .cc-empty { padding: 14px 12px; font-size: 14px; }
+
+      .btn-send {
+        width: 100%; background: var(--teal); color: #03211c; border: none;
+        font-size: 16.5px; font-weight: 800; padding: 15px 20px; min-height: 54px;
+        border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+        transition: background-color 0.2s ease;
+      }
+      .btn-send:hover { background: #25d3bd; }
+      .form-status { margin: 12px 0 0; font-size: 14px; color: var(--teal); min-height: 21px; }
+      .form-status.error { color: #ff7a7a; }
+      [data-theme="light"] .form-status.error { color: #c62f3b; }
+      .prefer-email { margin: 14px 0 0; font-size: 14.5px; text-align: center; }
+      .prefer-email a { color: var(--teal); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
+      .prefer-email a:hover { text-decoration: underline; }
+
+      .office-col { display: flex; flex-direction: column; gap: 26px; }
+      .office-card {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
+        padding: 30px 32px; box-shadow: var(--card-shadow);
+      }
+      .office-card .card-label {
+        color: var(--teal); font-size: 11.5px; font-weight: 800;
+        letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px;
+      }
+      .office-card h2 { font-size: 25px; margin: 0 0 6px; font-weight: 800; }
+      .office-card .city { font-size: 16.5px; color: var(--body-strong); font-weight: 600; margin: 0 0 22px; }
+      .time-row { display: flex; flex-wrap: wrap; gap: 28px; align-items: baseline; border-top: 1px solid var(--border); padding-top: 20px; }
+      .time-block .t-label { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--body); margin-bottom: 4px; }
+      .time-block .t-value { font-family: "Sora", sans-serif; font-size: 26px; font-weight: 700; color: var(--heading); font-variant-numeric: tabular-nums; }
+      .time-block .t-sub { font-size: 13.5px; }
+      .map-card {
+        border-radius: 22px; overflow: hidden; border: 1px solid var(--border);
+        background: #0a1626; box-shadow: var(--card-shadow);
+      }
+      .map-card iframe {
+        width: 100%; height: 340px; border: 0; display: block;
+        filter: invert(0.92) hue-rotate(185deg) saturate(0.55) brightness(0.92) contrast(0.95);
+      }
+      .map-foot {
+        display: flex; justify-content: space-between; align-items: center; gap: 14px;
+        padding: 14px 20px; background: #0a1626; color: #9db1c6; font-size: 14px;
+      }
+      .map-foot a { color: var(--teal); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; }
+      .map-foot a:hover { text-decoration: underline; }
+      .map-foot svg { width: 15px; height: 15px; }
+
+      /* ---------- Footer ---------- */
+      .site-footer { background: var(--footer-bg); border-top: 1px solid var(--footer-border); }
+      .footer-grid { display: grid; grid-template-columns: 1.4fr 0.8fr 1fr 1.1fr; gap: 36px; padding: 60px 0 44px; }
+      .site-footer .logo-text { color: var(--heading); }
+      .footer-tag { margin: 16px 0 0; font-size: 15px; max-width: 300px; }
+      .footer-h { font-family: "Sora", sans-serif; color: var(--teal); font-size: 13px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; margin: 4px 0 16px; }
+      .footer-links { list-style: none; margin: 0; padding: 0; }
+      .footer-links li { margin-bottom: 6px; font-size: 15px; }
+      .footer-links a { text-decoration: none; color: var(--body); display: inline-flex; align-items: center; min-height: 32px; }
+      .footer-links a:hover { color: var(--teal); }
+      .footer-contact { list-style: none; margin: 0; padding: 0; }
+      .footer-contact li { margin-bottom: 12px; font-size: 15px; display: flex; gap: 10px; align-items: flex-start; }
+      .footer-contact svg { width: 17px; height: 17px; color: var(--teal); flex: none; margin-top: 3px; }
+      .footer-contact a { text-decoration: none; overflow-wrap: anywhere; }
+      .footer-contact a:hover { color: var(--teal); }
+      .footer-bottom {
+        border-top: 1px solid var(--footer-border); padding: 20px 0 26px;
+        display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 13.5px;
+      }
+
+      /* ---------- Floating contact rail (stays dark in both modes) ---------- */
+      .rail {
+        position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 50;
+        background: #0a1626; border: 1px solid rgba(148, 178, 205, 0.25); border-radius: 999px;
+        padding: 8px; display: flex; flex-direction: column; gap: 6px;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+      }
+      .rail a {
+        width: 42px; height: 42px; border-radius: 50%; color: #c8d6e4;
+        display: flex; align-items: center; justify-content: center; text-decoration: none;
+      }
+      .rail a:hover { background: rgba(2, 192, 167, 0.18); color: var(--teal); }
+      .rail svg { width: 20px; height: 20px; }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 1020px) {
+        .cards { grid-template-columns: repeat(2, 1fr); }
+        .steps { grid-template-columns: repeat(2, 1fr); gap: 36px 28px; }
+        .steps::before { display: none; }
+        .contact-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 820px) {
+        .main-nav {
+          display: none; position: absolute; top: 100%; left: 0; right: 0;
+          background: #050b16; border-bottom: 1px solid rgba(148,178,205,.16);
+          flex-direction: column; padding: 10px 16px 16px; gap: 2px;
+        }
+        .main-nav.open { display: flex; }
+        .main-nav a { padding: 12px 10px; }
+        .main-nav a.active::after { left: 10px; right: auto; width: 34px; }
+        .menu-btn { display: inline-flex; }
+        .btn-quote { display: none; }
+        .next-head { grid-template-columns: 1fr; gap: 14px; align-items: start; }
+        .rail { display: none; }
+      }
+      @media (max-width: 560px) {
+        .cards { grid-template-columns: 1fr; }
+        .steps { grid-template-columns: 1fr; gap: 30px; }
+        .step { padding-left: 40px; }
+        .step .node { position: absolute; left: 0; top: 2px; margin-bottom: 0; }
+        .steps::before {
+          display: block; top: 10px; bottom: 10px; left: 9px; right: auto; width: 2px; height: auto;
+          background: linear-gradient(180deg, rgba(2,192,167,.15), var(--teal), rgba(2,192,167,.15));
+        }
+        .hero { padding: 52px 0 44px; }
+        .form-card { padding: 26px 20px; }
+        .office-card { padding: 24px 20px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+        .phone-row { flex-wrap: wrap; }
+        .cc-picker { flex: 1; }
+        .cc-btn { width: 100%; justify-content: space-between; }
+        .logo-text { font-size: 15px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= Header (stays dark in both modes) ================= -->
+    <header class="site-header">
+      <div class="wrap header-in">
+        <a class="logo" href="https://tensils-technology-website.vercel.app/" aria-label="Tensils Technology — home">
+          <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="21" stroke="#02C0A7" stroke-width="3"/>
+            <path d="M15 17 L24 25 L33 17" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 26 L24 34 L33 26" stroke="#02C0A7" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="logo-text">TENSILS<small>TECHNOLOGY</small></span>
+        </a>
+
+        <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+          <a href="https://tensils-technology-website.vercel.app/">Home</a>
+          <a href="https://tensils-technology-website.vercel.app/services.html">Services</a>
+          <a href="https://tensils-technology-website.vercel.app/#portfolio">Portfolio</a>
+          <a href="#" class="active" aria-current="page">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+          <a class="btn-quote" href="https://wa.me/923492836687" target="_blank" rel="noopener">Request a quote</a>
+          <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ================= Hero ================= -->
+      <section class="hero">
+        <div class="wrap">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="https://tensils-technology-website.vercel.app/">Home</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <span class="current" aria-current="page">Contact Us</span>
+          </nav>
+          <p class="eyebrow">Get in touch</p>
+          <h1>Have a project in mind?<br /><span class="line2">Let&rsquo;s build it together.</span></h1>
+          <p class="lede">Tell us what you want to build — a website, a CRM, an ERP, or a system that runs your whole business. Send a message, call, or WhatsApp us, and we&rsquo;ll reply within one business day.</p>
+        </div>
+      </section>
+
+      <!-- ================= Contact action cards ================= -->
+      <section class="wrap" aria-label="Ways to contact us">
+        <div class="cards">
+          <a class="action-card" href="tel:+923492836687">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </span>
+            <span class="card-label">Call Pakistan</span>
+            <span class="card-value">+92 349 2836687</span>
+            <span class="card-action">Call now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+
+          <a class="action-card" href="https://wa.me/923492836687" target="_blank" rel="noopener">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </span>
+            <span class="card-label">WhatsApp</span>
+            <span class="card-value">+92 349 2836687</span>
+            <span class="card-action">Open WhatsApp
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+
+          <a class="action-card" href="mailto:tensilstechnologies@gmail.com">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>
+              </svg>
+            </span>
+            <span class="card-label">Email</span>
+            <span class="card-value small">tensilstechnologies@gmail.com</span>
+            <span class="card-action">Send an e-mail
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+
+          <a class="action-card" href="#contact-form">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
+            </span>
+            <span class="card-label">Book a 30-minute call</span>
+            <span class="card-value">Schedule a meeting</span>
+            <span class="card-action">Pick a time
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= What happens next ================= -->
+      <section class="next wrap">
+        <div class="next-head">
+          <div>
+            <p class="eyebrow">What happens next</p>
+            <h2>From first message to a clear plan — in four steps.</h2>
+          </div>
+          <p>No pressure and no obligation. You tell us what you need, we come back with honest answers — and only then do we talk about building anything.</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="node" aria-hidden="true"></div>
+            <div class="when">Same day</div>
+            <h3 class="step-title">We read your message</h3>
+            <p>Your enquiry comes straight to our team in Sahiwal — a real person reads it, not a ticket queue or a bot.</p>
+          </div>
+          <div class="step">
+            <div class="node" aria-hidden="true"></div>
+            <div class="when">Within 1 business day</div>
+            <h3 class="step-title">You hear back from us</h3>
+            <p>We reply with our first thoughts, the questions that matter, and a clear suggestion for the next step.</p>
+          </div>
+          <div class="step">
+            <div class="node" aria-hidden="true"></div>
+            <div class="when">Discovery call</div>
+            <h3 class="step-title">A 30-minute conversation</h3>
+            <p>We dig into your goals, your current setup, and what a good result looks like for your business.</p>
+          </div>
+          <div class="step">
+            <div class="node" aria-hidden="true"></div>
+            <div class="when">Proposal</div>
+            <h3 class="step-title">Scope, timeline &amp; cost</h3>
+            <p>You receive a written proposal with everything spelled out — what we&rsquo;ll build, how long it takes, and what it costs.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= Form + office ================= -->
+      <section class="wrap">
+        <div class="contact-grid">
+          <div class="form-card" id="contact-form">
+            <h2>Send us a message</h2>
+            <p class="form-sub">Fill this in and your message opens in WhatsApp, ready to send to our team.</p>
+            <form id="enquiryForm" novalidate>
+              <div class="field">
+                <label for="fName">Full name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="fName" name="name" placeholder="Your full name" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label id="phoneLabel">Phone <span class="req" aria-hidden="true">*</span></label>
+                <div class="phone-row">
+                  <div class="cc-picker">
+                    <button class="cc-btn" type="button" id="ccBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Country code">
+                      <span id="ccBtnText">Pakistan&nbsp;&nbsp;+92</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <div class="cc-panel" id="ccPanel" hidden>
+                      <div class="cc-search">
+                        <input type="text" id="ccSearch" placeholder="Search country or code…" aria-label="Search country or code" />
+                      </div>
+                      <div class="cc-list" id="ccList" role="listbox" aria-label="Country codes"></div>
+                    </div>
+                  </div>
+                  <input type="text" id="fPhone" name="phone" placeholder="Phone number" inputmode="tel" autocomplete="tel-national" aria-labelledby="phoneLabel" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="fEmail">E-mail <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="fEmail" name="email" placeholder="you@company.com" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="fMessage">Message <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="fMessage" name="message" rows="6" placeholder="How can we help?" required></textarea>
+              </div>
+
+              <button class="btn-send" type="submit">
+                Send message
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+              <p class="prefer-email">Prefer e-mail? Write to us at <a href="mailto:tensilstechnologies@gmail.com">tensilstechnologies@gmail.com</a></p>
+            </form>
+          </div>
+
+          <div class="office-col">
+            <div class="office-card">
+              <div class="card-label">Our office</div>
+              <h2>Tensils Technology — Headquarters</h2>
+              <p class="city">Sahiwal, Punjab, Pakistan</p>
+              <div class="time-row">
+                <div class="time-block">
+                  <div class="t-label">Local time in Sahiwal</div>
+                  <div class="t-value" id="localTime">--:--:--</div>
+                  <div class="t-sub" id="localDate">Loading…</div>
+                </div>
+                <div class="time-block">
+                  <div class="t-label">Time zone</div>
+                  <div class="t-value" style="font-size:19px;">PKT · UTC+5</div>
+                  <div class="t-sub">Asia/Karachi</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-card">
+              <iframe
+                title="Map of Sahiwal, Pakistan — Tensils Technology headquarters"
+                src="https://www.google.com/maps?q=Sahiwal%2C%20Punjab%2C%20Pakistan&z=12&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen></iframe>
+              <div class="map-foot">
+                <span>Sahiwal, Punjab, Pakistan</span>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Sahiwal%2C+Punjab%2C+Pakistan" target="_blank" rel="noopener">
+                  Open in Maps
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= Footer ================= -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <a class="logo" href="https://tensils-technology-website.vercel.app/" aria-label="Tensils Technology — home">
+              <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="21" stroke="#02C0A7" stroke-width="3"/>
+                <path d="M15 17 L24 25 L33 17" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" style="color:var(--heading)"/>
+                <path d="M15 26 L24 34 L33 26" stroke="#02C0A7" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="logo-text">TENSILS<small>TECHNOLOGY</small></span>
+            </a>
+            <p class="footer-tag">We build software that runs your business — websites, CRM, ERP, dashboards and management systems.</p>
+          </div>
+          <div>
+            <h3 class="footer-h">Explore</h3>
+            <ul class="footer-links">
+              <li><a href="https://tensils-technology-website.vercel.app/">Home</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">Services</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/#portfolio">Portfolio</a></li>
+              <li><a href="#" aria-current="page">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="footer-h">Services</h3>
+            <ul class="footer-links">
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">WordPress</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">Shopify</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">Web Development</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">SEO</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">ERP</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">Business Dashboard</a></li>
+              <li><a href="https://tensils-technology-website.vercel.app/services.html">Management Systems</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="footer-h">Contact</h3>
+            <ul class="footer-contact">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>WhatsApp<br /><a href="https://wa.me/923492836687" target="_blank" rel="noopener">+92 349 2836687</a></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                <span>E-mail<br /><a href="mailto:tensilstechnologies@gmail.com">tensilstechnologies@gmail.com</a></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Headquarters<br />Sahiwal, Pakistan</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Tensils Technology. All rights reserved.</span>
+          <span>Websites · CRM · ERP · POS · Dashboards</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ================= Floating contact rail (stays dark in both modes) ================= -->
+    <div class="rail" aria-label="Quick contact">
+      <a href="tel:+923492836687" aria-label="Call Tensils Technology">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a href="https://wa.me/923492836687" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </a>
+      <a href="mailto:tensilstechnologies@gmail.com" aria-label="Email Tensils Technology">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      </a>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- Theme toggle ---------- */
+        var toggle = document.getElementById("themeToggle");
+        function syncToggleLabel() {
+          var isLight = document.documentElement.getAttribute("data-theme") === "light";
+          var label = isLight ? "Switch to dark mode" : "Switch to light mode";
+          toggle.setAttribute("aria-label", label);
+          toggle.setAttribute("title", label);
+        }
+        syncToggleLabel();
+        toggle.addEventListener("click", function () {
+          var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", next);
+          try { window.localStorage.setItem("tensils-theme", next); } catch (e) {}
+          syncToggleLabel();
+        });
+
+        /* ---------- Mobile menu ---------- */
+        var menuBtn = document.getElementById("menuBtn");
+        var nav = document.getElementById("mainNav");
+        menuBtn.addEventListener("click", function () {
+          var open = nav.classList.toggle("open");
+          menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+          menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        });
+        nav.addEventListener("click", function (e) {
+          if (e.target.tagName === "A") {
+            nav.classList.remove("open");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        /* ---------- Live local time — Asia/Karachi ---------- */
+        var timeEl = document.getElementById("localTime");
+        var dateEl = document.getElementById("localDate");
+        var timeFmt = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Karachi", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true
+        });
+        var dateFmt = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Karachi", weekday: "long", day: "numeric", month: "long", year: "numeric"
+        });
+        function tick() {
+          var now = new Date();
+          timeEl.textContent = timeFmt.format(now).toUpperCase();
+          dateEl.textContent = dateFmt.format(now);
+        }
+        tick();
+        setInterval(tick, 1000);
+
+        /* ---------- Country code picker ---------- */
+        var POPULAR = [
+          ["Pakistan", "+92"],
+          ["United Arab Emirates", "+971"],
+          ["Saudi Arabia", "+966"],
+          ["United Kingdom", "+44"],
+          ["United States", "+1"]
+        ];
+        var COUNTRIES = [
+          ["Afghanistan", "+93"], ["Albania", "+355"], ["Algeria", "+213"], ["American Samoa", "+1684"],
+          ["Andorra", "+376"], ["Angola", "+244"], ["Anguilla", "+1264"], ["Antigua and Barbuda", "+1268"],
+          ["Argentina", "+54"], ["Armenia", "+374"], ["Aruba", "+297"], ["Australia", "+61"],
+          ["Austria", "+43"], ["Azerbaijan", "+994"], ["Bahamas", "+1242"], ["Bahrain", "+973"],
+          ["Bangladesh", "+880"], ["Barbados", "+1246"], ["Belarus", "+375"], ["Belgium", "+32"],
+          ["Belize", "+501"], ["Benin", "+229"], ["Bermuda", "+1441"], ["Bhutan", "+975"],
+          ["Bolivia", "+591"], ["Bosnia and Herzegovina", "+387"], ["Botswana", "+267"], ["Brazil", "+55"],
+          ["British Virgin Islands", "+1284"], ["Brunei", "+673"], ["Bulgaria", "+359"], ["Burkina Faso", "+226"],
+          ["Burundi", "+257"], ["Cambodia", "+855"], ["Cameroon", "+237"], ["Canada", "+1"],
+          ["Cape Verde", "+238"], ["Cayman Islands", "+1345"], ["Central African Republic", "+236"], ["Chad", "+235"],
+          ["Chile", "+56"], ["China", "+86"], ["Colombia", "+57"], ["Comoros", "+269"],
+          ["Congo", "+242"], ["Congo (DRC)", "+243"], ["Cook Islands", "+682"], ["Costa Rica", "+506"],
+          ["Croatia", "+385"], ["Cuba", "+53"], ["Curacao", "+599"], ["Cyprus", "+357"],
+          ["Czechia", "+420"], ["Denmark", "+45"], ["Djibouti", "+253"], ["Dominica", "+1767"],
+          ["Dominican Republic", "+1809"], ["Ecuador", "+593"], ["Egypt", "+20"], ["El Salvador", "+503"],
+          ["Equatorial Guinea", "+240"], ["Eritrea", "+291"], ["Estonia", "+372"], ["Eswatini", "+268"],
+          ["Ethiopia", "+251"], ["Fiji", "+679"], ["Finland", "+358"], ["France", "+33"],
+          ["French Guiana", "+594"], ["French Polynesia", "+689"], ["Gabon", "+241"], ["Gambia", "+220"],
+          ["Georgia", "+995"], ["Germany", "+49"], ["Ghana", "+233"], ["Gibraltar", "+350"],
+          ["Greece", "+30"], ["Greenland", "+299"], ["Grenada", "+1473"], ["Guadeloupe", "+590"],
+          ["Guam", "+1671"], ["Guatemala", "+502"], ["Guinea", "+224"], ["Guinea-Bissau", "+245"],
+          ["Guyana", "+592"], ["Haiti", "+509"], ["Honduras", "+504"], ["Hong Kong", "+852"],
+          ["Hungary", "+36"], ["Iceland", "+354"], ["India", "+91"], ["Indonesia", "+62"],
+          ["Iran", "+98"], ["Iraq", "+964"], ["Ireland", "+353"], ["Israel", "+972"],
+          ["Italy", "+39"], ["Ivory Coast", "+225"], ["Jamaica", "+1876"], ["Japan", "+81"],
+          ["Jordan", "+962"], ["Kazakhstan", "+7"], ["Kenya", "+254"], ["Kiribati", "+686"],
+          ["Kuwait", "+965"], ["Kyrgyzstan", "+996"], ["Laos", "+856"], ["Latvia", "+371"],
+          ["Lebanon", "+961"], ["Lesotho", "+266"], ["Liberia", "+231"], ["Libya", "+218"],
+          ["Liechtenstein", "+423"], ["Lithuania", "+370"], ["Luxembourg", "+352"], ["Macau", "+853"],
+          ["Madagascar", "+261"], ["Malawi", "+265"], ["Malaysia", "+60"], ["Maldives", "+960"],
+          ["Mali", "+223"], ["Malta", "+356"], ["Martinique", "+596"], ["Mauritania", "+222"],
+          ["Mauritius", "+230"], ["Mexico", "+52"], ["Micronesia", "+691"], ["Moldova", "+373"],
+          ["Monaco", "+377"], ["Mongolia", "+976"], ["Montenegro", "+382"], ["Montserrat", "+1664"],
+          ["Morocco", "+212"], ["Mozambique", "+258"], ["Myanmar", "+95"], ["Namibia", "+264"],
+          ["Nauru", "+674"], ["Nepal", "+977"], ["Netherlands", "+31"], ["New Caledonia", "+687"],
+          ["New Zealand", "+64"], ["Nicaragua", "+505"], ["Niger", "+227"], ["Nigeria", "+234"],
+          ["North Korea", "+850"], ["North Macedonia", "+389"], ["Norway", "+47"], ["Oman", "+968"],
+          ["Pakistan", "+92"], ["Palau", "+680"], ["Palestine", "+970"], ["Panama", "+507"],
+          ["Papua New Guinea", "+675"], ["Paraguay", "+595"], ["Peru", "+51"], ["Philippines", "+63"],
+          ["Poland", "+48"], ["Portugal", "+351"], ["Puerto Rico", "+1787"], ["Qatar", "+974"],
+          ["Reunion", "+262"], ["Romania", "+40"], ["Russia", "+7"], ["Rwanda", "+250"],
+          ["Saint Kitts and Nevis", "+1869"], ["Saint Lucia", "+1758"], ["Saint Vincent and the Grenadines", "+1784"],
+          ["Samoa", "+685"], ["San Marino", "+378"], ["Sao Tome and Principe", "+239"], ["Saudi Arabia", "+966"],
+          ["Senegal", "+221"], ["Serbia", "+381"], ["Seychelles", "+248"], ["Sierra Leone", "+232"],
+          ["Singapore", "+65"], ["Slovakia", "+421"], ["Slovenia", "+386"], ["Solomon Islands", "+677"],
+          ["Somalia", "+252"], ["South Africa", "+27"], ["South Korea", "+82"], ["South Sudan", "+211"],
+          ["Spain", "+34"], ["Sri Lanka", "+94"], ["Sudan", "+249"], ["Suriname", "+597"],
+          ["Sweden", "+46"], ["Switzerland", "+41"], ["Syria", "+963"], ["Taiwan", "+886"],
+          ["Tajikistan", "+992"], ["Tanzania", "+255"], ["Thailand", "+66"], ["Timor-Leste", "+670"],
+          ["Togo", "+228"], ["Tonga", "+676"], ["Trinidad and Tobago", "+1868"], ["Tunisia", "+216"],
+          ["Turkey", "+90"], ["Turkmenistan", "+993"], ["Turks and Caicos Islands", "+1649"], ["Tuvalu", "+688"],
+          ["Uganda", "+256"], ["Ukraine", "+380"], ["United Arab Emirates", "+971"], ["United Kingdom", "+44"],
+          ["United States", "+1"], ["Uruguay", "+598"], ["US Virgin Islands", "+1340"], ["Uzbekistan", "+998"],
+          ["Vanuatu", "+678"], ["Vatican City", "+379"], ["Venezuela", "+58"], ["Vietnam", "+84"],
+          ["Yemen", "+967"], ["Zambia", "+260"], ["Zimbabwe", "+263"]
+        ];
+
+        var ccBtn = document.getElementById("ccBtn");
+        var ccBtnText = document.getElementById("ccBtnText");
+        var ccPanel = document.getElementById("ccPanel");
+        var ccSearch = document.getElementById("ccSearch");
+        var ccList = document.getElementById("ccList");
+        var selected = { name: "Pakistan", code: "+92" };
+
+        function makeItem(entry) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "cc-item" + (entry[0] === selected.name && entry[1] === selected.code ? " selected" : "");
+          b.setAttribute("role", "option");
+          var name = document.createElement("span");
+          name.textContent = entry[0];
+          var code = document.createElement("span");
+          code.className = "cc-code";
+          code.textContent = entry[1];
+          b.appendChild(name);
+          b.appendChild(code);
+          b.addEventListener("click", function () {
+            selected = { name: entry[0], code: entry[1] };
+            ccBtnText.textContent = entry[0] + "  " + entry[1];
+            closePanel();
+            document.getElementById("fPhone").focus();
+          });
+          return b;
+        }
+
+        function renderList(filter) {
+          ccList.innerHTML = "";
+          var q = (filter || "").trim().toLowerCase();
+          function matches(entry) {
+            return !q || entry[0].toLowerCase().indexOf(q) !== -1 || entry[1].indexOf(q) !== -1 || entry[1].replace("+", "").indexOf(q) === 0;
+          }
+          var any = false;
+          if (!q) {
+            var gl = document.createElement("div");
+            gl.className = "cc-group-label";
+            gl.textContent = "Popular";
+            ccList.appendChild(gl);
+            POPULAR.forEach(function (entry) { ccList.appendChild(makeItem(entry)); });
+            var gl2 = document.createElement("div");
+            gl2.className = "cc-group-label";
+            gl2.textContent = "All countries";
+            ccList.appendChild(gl2);
+          }
+          COUNTRIES.forEach(function (entry) {
+            if (matches(entry)) { ccList.appendChild(makeItem(entry)); any = true; }
+          });
+          if (q && !any) {
+            var empty = document.createElement("div");
+            empty.className = "cc-empty";
+            empty.textContent = "No country matches your search.";
+            ccList.appendChild(empty);
+          }
+        }
+
+        function openPanel() {
+          renderList(ccSearch.value);
+          ccPanel.hidden = false;
+          ccBtn.setAttribute("aria-expanded", "true");
+          setTimeout(function () { ccSearch.focus(); }, 0);
+        }
+        function closePanel() {
+          ccPanel.hidden = true;
+          ccBtn.setAttribute("aria-expanded", "false");
+        }
+        ccBtn.addEventListener("click", function () {
+          if (ccPanel.hidden) openPanel(); else closePanel();
+        });
+        ccSearch.addEventListener("input", function () { renderList(ccSearch.value); });
+        document.addEventListener("click", function (e) {
+          if (!ccPanel.hidden && !e.target.closest(".cc-picker")) closePanel();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !ccPanel.hidden) { closePanel(); ccBtn.focus(); }
+        });
+
+        /* ---------- Form submit → WhatsApp with prefilled details ---------- */
+        var form = document.getElementById("enquiryForm");
+        var status = document.getElementById("formStatus");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("fName").value.trim();
+          var phone = document.getElementById("fPhone").value.trim();
+          var email = document.getElementById("fEmail").value.trim();
+          var message = document.getElementById("fMessage").value.trim();
+
+          status.classList.remove("error");
+          if (!name || !phone || !email || !message) {
+            status.classList.add("error");
+            status.textContent = "Please fill in all four fields so we can reply properly.";
+            return;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            status.classList.add("error");
+            status.textContent = "That e-mail address doesn’t look right — please check it and try again.";
+            return;
+          }
+          var text =
+            "New enquiry from the Tensils Technology website\n" +
+            "------------------------------------------\n" +
+            "Name: " + name + "\n" +
+            "Phone: " + selected.code + " " + phone + " (" + selected.name + ")\n" +
+            "E-mail: " + email + "\n\n" +
+            "Message:\n" + message;
+          status.textContent = "Opening WhatsApp with your message ready to send…";
+          window.open("https://wa.me/923492836687?text=" + encodeURIComponent(text), "_blank", "noopener");
+        });
+      })();
+    </script>
+  </body>
+</html>
